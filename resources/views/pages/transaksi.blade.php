@@ -20,9 +20,9 @@
         $tpos_save = session('tpos_save');
     @endphp
     <div class="section-body">
-        <form action="" method="GET" id="thisform">
         <div class="row">
             <div class="col-12 col-md-4 col-lg-4">
+                <form action="/transaksi" method="GET">
                 <div class="card">
                     <div class="card-header">
                         <h4>Header Information</h4>
@@ -45,7 +45,12 @@
                                 <div class="form-group">
                                     <label>Toko Tujuan</label>
                                     <select class="form-control select2" id="toko_tujuan" name="toko_tujuan">
-                                        <option disabled selected>--Select Toko--</option>
+                                            @if(request('toko_tujuan') != NULL)
+                                            <option selected>{{ $_GET['toko_tujuan']}}</option>
+                                            @else
+                                            <option disabled selected>--Select Toko--</option>
+                                            @endif  
+                                        <option>TEST</option>
                                     </select>
                                 </div>                                
                             </div>
@@ -70,12 +75,13 @@
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-end">                    
                                 <div class="form-group">
-                                    <button class="btn btn-primary mr-1" id="confirm" type="submit" formaction="#" onclick="show_loading()">View</button>
+                                    <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">View</button>
                                 </div>                                
                             </div>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
@@ -95,6 +101,7 @@
                             <table class="table table-bordered" id="datatable">
                                 <thead>
                                     <tr>
+                                        <th scope="col" class="border border-5" style="text-align: center;">No</th>
                                         <th scope="col" class="border border-5" style="text-align: center;">No SJ</th>
                                         <th scope="col" class="border border-5" style="text-align: center;">Tanggal SJ</th>
                                         <th scope="col" class="border border-5" style="text-align: center;">Tujuan</th>
@@ -105,6 +112,39 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{-- @php $counter = 0; @endphp
+                                    @for($i = 0; $i < sizeof($results); $i++) 
+                                    @php $counter++; @endphp 
+                                    <tr row_id="{{ $counter }}">
+                                        <th class='id-header border border-5' style='readonly:true;' headers="{{ $counter }}">{{ $counter }}</th>
+                                        <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='namabrgclass form-control' name='nama_brg_d[]' type='text' value='{{ $penjualands[$i]->nama }}'></td>
+                                        <td class='border border-5'><input style='width:120px;' form='thisform' class='row_qty qtyclass form-control' name='qty_d[]' id='qty_d_{{ $counter }}' type='text' value='{{ number_format($penjualands[$i]->quantity, 0, '.', '') }}'></td>
+                                        <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='satuanclass form-control' name='satuan_d[]' type='text' value='{{ $penjualands[$i]->satuan }}'></td>
+                                        <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='hrgjualclass form-control' name='hrgjual_d[]' id='hrgjual_d_{{ $counter }}' type='text' value='{{ number_format($penjualands[$i]->harga, 0, '.', ',') }}'></td>
+                                        <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='totalclass form-control' name='total_d[]' id='total_d_{{ $counter }}' type='text' value='{{ number_format($penjualands[$i]->total, 0, '.', ',') }}'></td>
+                                        <td class="border border-5"><button title='Delete' class='delete btn btn-primary' value="{{ $counter }}"><i style='font-size:15pt;color:#ffff;' class='fa fa-trash'></i></button></td>
+                                        <td class="border border-5" hidden><input style='width:120px;' readonly form='thisform' class='idclass form-control' name='id_d[]' type='text' value='{{ $penjualands[$i]->id }}' id="tbl_detail_id_{{ $counter }}"></td>
+                                        <td class="border border-5" hidden><input style='width:120px;' readonly form='thisform' class='delclass form-control' name='deleted_item_d[]' type='text' value='' id="deleted_d_{{ $counter }}"></td>
+                                        <td class="border border-5" hidden><input style='width:120px;' readonly form='thisform' class='existdbclass form-control' name='existdb_d[]' type='text' value='{{ $penjualands[$i]->id }}' id="existdb_{{ $counter }}"></td>
+                                        </tr>
+                                    @endfor --}}
+                                    @php
+                                    $no=0;
+                                    $dpnomor = ""; 
+                                    $bpbnomor = "";@endphp
+                                    @isset($results)
+                                    @foreach ($results as $key => $item)
+                                    @php $no++; @endphp 
+                                    <th class='id-header border border-5' style='readonly:true; text-align: center;' headers="{{ $no }}">{{ $no }}</th>
+                                    <td class='border border-5'><input style='width:100%; text-align: center;' readonly form='thisform' class='namabrgclass form-control' name='nama_brg_d[]' type='text' value='{{ $item->no }}'></td>
+                                    <td class='border border-5'><input style='width:100%; text-align: center;' readonly form='thisform' class='namabrgclass form-control' name='nama_brg_d[]' type='text' value='{{ date("Y-m-d", strtotime($item->tdate)) }}'></td>
+                                    <td class='border border-5'><input style='width:100%; text-align: center;' readonly form='thisform' class='namabrgclass form-control' name='nama_brg_d[]' type='text' value='{{ $item->name_mlokasi2 }}'></td>
+                                    <td class='border border-5'><input style='width:100%; text-align: center;' readonly form='thisform' class='namabrgclass form-control' name='nama_brg_d[]' type='text' value='{{ $item->code_mitem }}'></td>
+                                    <td class='border border-5'><input style='width:100%; text-align: center;' readonly form='thisform' class='namabrgclass form-control' name='nama_brg_d[]' type='text' value='{{ $item->name_mitem }}'></td>
+                                    <td class='border border-5'><input style='width:100%; text-align: center;' readonly form='thisform' class='namabrgclass form-control' name='nama_brg_d[]' type='text' value='{{ number_format($item->qty) }}'></td>
+                                    <td class='border border-5' style='padding-top: 20px; padding-left: 30px;'><input class="form-check-input" type="checkbox" name="checks[]" id="checkall"></td>
+                                    @endforeach
+                                    @endisset 
                                 </tbody>                            
                             </table>
                             <br>
@@ -123,7 +163,6 @@
                 </div>
             </div>
         </div>
-    </form>
     </div>
 </section>
 @stop
