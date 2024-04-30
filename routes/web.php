@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+Route::get('/packlist', [TransaksiController::class, 'index'])->name('packlist');
+Route::get('/packlist/update', [TransaksiController::class, 'update'])->name('packlistupdate');

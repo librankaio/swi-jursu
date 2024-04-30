@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaksi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -56,5 +57,21 @@ class TransaksiController extends Controller
             }
         }
         return view('pages.transaksi');
+    }
+
+    public function update(Transaksi $transaksi){
+        // dd(request()->all());
+        $count=0;
+        $countrows = sizeof(request('id_d'));
+        for ($i=0;$i<sizeof(request('id_d'));$i++){
+            Transaksi::where('id', '=', $transaksi->id)->update([
+                'sendstat' => request('checks')[$i],
+            ]);
+            $count++;
+        }
+        
+        if($count == $countrows){
+            return redirect()->route('transaksi');
+        }
     }
 }
