@@ -169,6 +169,7 @@
         $('#datatable').DataTable({
         // "ordering":false,
         "bInfo" : false,
+        "pageLength": 50
         // "bPaginate": false,
         // "searching": false
         });

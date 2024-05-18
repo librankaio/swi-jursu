@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>APPS PENJUALAN</title>
+    <title>PACKING LIST</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- Bootstrap icon --}}
@@ -92,7 +92,7 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="/mwarna">APPS Penjualan</a>
+                        <a href="/mwarna">PACKING LIST</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
                         <a href="/mwarna">AI</a>
