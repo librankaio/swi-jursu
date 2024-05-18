@@ -50,7 +50,9 @@
                                                 @else
                                                 <option disabled selected>--Select Toko--</option>
                                                 @endif  
-                                            <option>TEST</option>
+                                                @foreach($counters as $counter)
+                                                <option>{{ $counter->name}}</option>
+                                                @endforeach
                                         </select>
                                     </div>                                
                                 </div>

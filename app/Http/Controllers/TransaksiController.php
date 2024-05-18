@@ -11,6 +11,7 @@ class TransaksiController extends Controller
 {
     //
     public function index(Request $request){
+        $counters = DB::table('mwhse')->get();
         if (isset($request->dtfr)) {
             // dd($request->all());
             if ($request->searchtext == null) {
@@ -21,6 +22,7 @@ class TransaksiController extends Controller
                 // $datetoForm = Carbon::createFromFormat('d/m/Y', $dtto)->format('Y-m-d');
 
                 $results = DB::table('tsj')->get();
+                $counters = DB::table('mwhse')->get();
                 // $results = DB::table('tsj')->whereBetween('dptanggal', [$datefrForm, $datetoForm])->where('tstatus', '=', 1)->where('jenis_dokumen', '=', $jenisdok)->where('dpnomor', '=', $searchtext)->paginate(10);
 
                 // $query = DB::select('EXEC rptTest ?,?,?',[$datefrForm,$datetoForm,'BC 4.0']);
@@ -36,27 +38,31 @@ class TransaksiController extends Controller
                
 
                 return view('pages.transaksi', [
-                    'results' => $results
+                    'results' => $results,
+                    'counters' => $counters
                 ]);
             } else if ($request->searchtext != null) {
                 $searchtext = $request->searchtext;
                 $dtfr = $request->input('dtfr');
                 $dtto = $request->input('dtto');
                 $jenisdok = $request->input('jenisdok');
+                $counters = DB::table('mwhse')->get();
                 // $datefrForm = Carbon::createFromFormat('d/m/Y', $dtfr)->format('Y-m-d');
                 // $datetoForm = Carbon::createFromFormat('d/m/Y', $dtto)->format('Y-m-d');
 
                 // $results = DB::table('pemasukan_dokumen')->whereBetween('dptanggal', [$datefrForm, $datetoForm])->where('tstatus', '=', 1)->where('jenis_dokumen', '=', $jenisdok)->where('dpnomor', '=', $searchtext)->paginate(10);
 
                 $results = DB::table('tsj')->get();
-                dd($results);
 
                 return view('pages.transaksi', [
-                    'results' => $results
+                    'results' => $results,
+                    'counters' => $counters,
                 ]);
             }
         }
-        return view('pages.transaksi');
+        return view('pages.transaksi',[
+            'counters' => $counters,
+        ]);
     }
 
     public function update(Transaksi $transaksi){
