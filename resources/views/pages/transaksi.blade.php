@@ -41,7 +41,7 @@
                                         <input type="date" class="form-control" name="dtto" value="@php if(request('dtto')==NULL){ echo date('Y-m-d');} else{ echo $_GET['dtto']; } @endphp">
                                     </div>
                                 </div>
-                                <div class="col-md-6">                                
+                                <div class="col-md-12">                                
                                     <div class="form-group">
                                         <label>Toko Tujuan</label>
                                         <select class="form-control select2" id="toko_tujuan" name="toko_tujuan">
