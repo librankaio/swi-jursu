@@ -21,6 +21,11 @@
     @endphp
     <div class="section-body">
         <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                @include('layouts.flash-message')
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12 col-md-4 col-lg-4">
                 <form action="/packlist" method="GET">
                     <div class="card">
@@ -111,7 +116,8 @@
                                             <th scope="col" class="border border-5" style="text-align: center;">Kode</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Nama</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Qty</th>
-                                            <th scope="col" colspan="1" class="border border-5" style="text-align: center;">Check</th>
+                                            {{-- <th scope="col" colspan="1" class="border border-5" style="text-align: center;">Check</th> --}}
+                                            <th scope="col" class="border border-5" style="text-align: center;">Check</th>
                                             <th scope="col" class="border border-0" style="text-align: center;" hidden></th>
                                         </tr>
                                     </thead>
@@ -123,15 +129,18 @@
                                         @isset($results)
                                         @foreach ($results as $key => $item)
                                         @php $no++; @endphp 
-                                        <th class='id-header border border-5' style='readonly:true; text-align: center;' headers="{{ $no }}">{{ $no }}</th>
-                                        <td class='border border-5'><input style='width:100%; text-align: center;' readonly form='thisform' class='noclass form-control' name='no_d[]' type='text' value='{{ $item->no }}'></td>
-                                        <td class='border border-5'><input style='width:100%; text-align: center;' readonly form='thisform' class='dateclass form-control' name='date_d[]' type='text' value='{{ date("Y-m-d", strtotime($item->tdate)) }}'></td>
-                                        <td class='border border-5'><input style='width:100%; text-align: center;' readonly form='thisform' class='lokasiclass form-control' name='lokasi_d[]' type='text' value='{{ $item->name_mlokasi2 }}'></td>
-                                        <td class='border border-5'><input style='width:100%; text-align: center;' readonly form='thisform' class='codemitemclass form-control' name='codemitem_d[]' type='text' value='{{ $item->code_mitem }}'></td>
-                                        <td class='border border-5'><input style='width:100%; text-align: center;' readonly form='thisform' class='namemitemclass form-control' name='namemitem_d[]' type='text' value='{{ $item->name_mitem }}'></td>
-                                        <td class='border border-5'><input style='width:100%; text-align: center;' readonly form='thisform' class='qtyclass form-control' name='qty_d[]' type='text' value='{{ number_format($item->qty) }}'></td>
-                                        <td class='border border-5'><input style='width:100%; text-align: center;' class='idclass form-control' name='id_d[]' type='text' value='{{ $item->id }}'></td>
-                                        <td class='border border-5' style='padding-top: 20px; padding-left: 30px;'><input class="form-check-input" type="checkbox" name="checks[]" id="checkall"></td>
+                                        <tr>
+                                            <th class='id-header border border-5' style='readonly:true; text-align: center;' headers="{{ $no }}">{{ $no }}</th>
+                                            <td class='border border-5'><input style='width:100%; text-align: center;' readonly class='noclass form-control' name='no_d[]' type='text' value='{{ $item->no }}'></td>
+                                            <td class='border border-5'><input style='width:100%; text-align: center;' readonly class='dateclass form-control' name='date_d[]' type='text' value='{{ date("Y-m-d", strtotime($item->tdate)) }}'></td>
+                                            <td class='border border-5'><input style='width:100%; text-align: center;' readonly class='lokasiclass form-control' name='lokasi_d[]' type='text' value='{{ $item->name_mlokasi2 }}'></td>
+                                            <td class='border border-5'><input style='width:100%; text-align: center;' readonly class='codemitemclass form-control' name='codemitem_d[]' type='text' value='{{ $item->code_mitem }}'></td>
+                                            <td class='border border-5'><input style='width:100%; text-align: center;' readonly class='namemitemclass form-control' name='namemitem_d[]' type='text' value='{{ $item->name_mitem }}'></td>
+                                            <td class='border border-5'><input style='width:100%; text-align: center;' readonly class='qtyclass form-control' name='qty_d[]' type='text' value='{{ number_format($item->qty) }}'></td>
+                                            {{-- <td class='border border-5'><input style='width:100%; text-align: center;' class='idclass form-control' name='id_d[]' type='text' value='{{ $item->id }}'></td> --}}
+                                            <td class='border border-5' hidden><input style='width:100%; text-align: center;' class='idclass form-control' name='code_lokasi[]' type='text' value='{{ $item->code_mlokasi2 }}'></td>
+                                            <td class='border border-5' style='padding-top: 20px; padding-left: 30px;'><input class="form-check-input" type="checkbox" name="checks[]" id="checkall"></td>
+                                        </tr>
                                         @endforeach
                                         @endisset 
                                     </tbody>                            

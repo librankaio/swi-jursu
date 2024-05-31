@@ -21,7 +21,8 @@ class TransaksiController extends Controller
                 // $datefrForm = Carbon::createFromFormat('d/m/Y', $dtfr)->format('Y-m-d');
                 // $datetoForm = Carbon::createFromFormat('d/m/Y', $dtto)->format('Y-m-d');
 
-                $results = DB::table('tsj')->get();
+                // $results = DB::table('tsj')->get();
+                $results = DB::table('vwpacklist')->get();
                 $counters = DB::table('mwhse')->get();
                 // $results = DB::table('tsj')->whereBetween('dptanggal', [$datefrForm, $datetoForm])->where('tstatus', '=', 1)->where('jenis_dokumen', '=', $jenisdok)->where('dpnomor', '=', $searchtext)->paginate(10);
 
@@ -30,7 +31,7 @@ class TransaksiController extends Controller
 
                 $page = request('page', 1);
                 $pageSize = 25;
-                $query = DB::table('tsj')->get();
+                $query = DB::table('vwpacklist')->get();
                 $offset = ($page * $pageSize) - $pageSize;
                 // $data = array_slice($query, $offset, $pageSize, true);
                 // $results = new \Illuminate\Pagination\LengthAwarePaginator($data, count($data), $pageSize, $page);
@@ -52,7 +53,8 @@ class TransaksiController extends Controller
 
                 // $results = DB::table('pemasukan_dokumen')->whereBetween('dptanggal', [$datefrForm, $datetoForm])->where('tstatus', '=', 1)->where('jenis_dokumen', '=', $jenisdok)->where('dpnomor', '=', $searchtext)->paginate(10);
 
-                $results = DB::table('tsj')->get();
+                // $results = DB::table('tsj')->get();
+                $results = DB::table('vwpacklist')->get();
 
                 return view('pages.transaksi', [
                     'results' => $results,
@@ -68,16 +70,24 @@ class TransaksiController extends Controller
     public function update(Transaksi $transaksi){
         // dd(request()->all());
         $count=0;
-        $countrows = sizeof(request('id_d'));
-        for ($i=0;$i<sizeof(request('id_d'));$i++){
-            Transaksi::where('id', '=', $transaksi->id)->update([
-                'sendstat' => request('checks')[$i],
+        $countrows = sizeof(request('checks'));
+        $status = "";
+        for ($i=0;$i<sizeof(request('checks'));$i++){
+            // dd((float)request('qty_d')[$i]);
+            if(request('checks')[$i] == "on"){
+                $status = "Y";
+            }
+            Transaksi::where('code_mitem', '=', request('codemitem_d')[$i])->update([
+                // 'sendstat' => request('checks')[$i],
+                'sendstat' => $status,
             ]);
+            DB::update(DB::raw("update mitemwhse set qty = qty - ".(float)request('qty_d')[$i]." where code_mitem = '".request('codemitem_d')[$i]."' and code_mwhse = 'HDH'"));
+            DB::update(DB::raw("update mitemwhse set qty = qty + ".(float)request('qty_d')[$i]." where code_mitem = '".request('codemitem_d')[$i]."' and code_mwhse = '".request('code_lokasi')[$i]."'"));
             $count++;
         }
         
         if($count == $countrows){
-            return redirect()->route('transaksi');
+            return redirect()->route('packlist')->with('success', 'Data berhasil di Update');
         }
     }
 }
