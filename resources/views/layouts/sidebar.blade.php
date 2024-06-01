@@ -14,3 +14,4 @@
         <li><a class="nav-link" href="{{ route('lapstock') }}"><i class="fas fa-cubes"></i> <span>Laporan Stock</span></a></li>
         <li><a class="nav-link" href="{{ route('laporanpenjualan') }}"><i class="fas fa-cubes"></i> <span>Laporan Penjualan</span></a></li> --}}
     </li>
+</ul>
