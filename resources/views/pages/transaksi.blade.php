@@ -10,7 +10,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Filter Packing</h1>
+        <h1>Surat Jalan</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Transaksi</a></div>
             <div class="breadcrumb-item"><a class="text-muted">Transaksi</a></div>
@@ -30,11 +30,11 @@
                 <form action="/packlist" method="GET">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Filter Packing List</h4>
+                            <h4>Surat Jalan</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-6">                    
+                                {{-- <div class="col-md-6">                    
                                     <div class="form-group">
                                         <label>Periode</label>
                                         <input type="date" class="form-control" name="dtfr" value="@php if(request('dtfr')==NULL){ echo date('Y-m-d');} else{ echo $_GET['dtfr']; } @endphp">
@@ -45,18 +45,18 @@
                                         <label>s/d</label>
                                         <input type="date" class="form-control" name="dtto" value="@php if(request('dtto')==NULL){ echo date('Y-m-d');} else{ echo $_GET['dtto']; } @endphp">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-12">                                
                                     <div class="form-group">
-                                        <label>Toko Tujuan</label>
-                                        <select class="form-control select2" id="toko_tujuan" name="toko_tujuan">
-                                                @if(request('toko_tujuan') != NULL)
-                                                <option selected>{{ $_GET['toko_tujuan']}}</option>
+                                        <label>No Surat Jalan</label>
+                                        <select class="form-control select2" id="no_sj" name="no_sj">
+                                                @if(request('no_sj') != NULL)
+                                                <option selected>{{ $_GET['no_sj']}}</option>
                                                 @else
-                                                <option disabled selected>--Select Toko--</option>
+                                                <option disabled selected>--Select No SJ--</option>
                                                 @endif  
                                                 @foreach($counters as $counter)
-                                                <option>{{ $counter->name}}</option>
+                                                <option>{{ $counter->no}}</option>
                                                 @endforeach
                                         </select>
                                     </div>                                

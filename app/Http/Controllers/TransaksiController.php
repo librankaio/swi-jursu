@@ -11,8 +11,9 @@ class TransaksiController extends Controller
 {
     //
     public function index(Request $request){
-        $counters = DB::table('mwhse')->get();
-        if (isset($request->dtfr)) {
+        // $counters = DB::table('mwhse')->get();
+        $counters = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' GROUP BY no"));
+        if (isset($request->no_sj)) {
             // dd($request->all());
             if ($request->searchtext == null) {
 
@@ -23,11 +24,12 @@ class TransaksiController extends Controller
 
                 // $results = DB::table('tsj')->get();
                 $results = DB::table('vwpacklist')->get();
-                $counters = DB::table('mwhse')->get();
+                // $counters = DB::table('mwhse')->groupBy('no')->get();
+                $counters = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND no = '".$request->no_sj."' GROUP BY no"));
+                // dd($counters);
                 // $results = DB::table('tsj')->whereBetween('dptanggal', [$datefrForm, $datetoForm])->where('tstatus', '=', 1)->where('jenis_dokumen', '=', $jenisdok)->where('dpnomor', '=', $searchtext)->paginate(10);
 
                 // $query = DB::select('EXEC rptTest ?,?,?',[$datefrForm,$datetoForm,'BC 4.0']);
-                // dd($results);
 
                 $page = request('page', 1);
                 $pageSize = 25;
@@ -47,7 +49,9 @@ class TransaksiController extends Controller
                 $dtfr = $request->input('dtfr');
                 $dtto = $request->input('dtto');
                 $jenisdok = $request->input('jenisdok');
-                $counters = DB::table('mwhse')->get();
+                // $counters = DB::table('mwhse')->get();
+                $counters = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND no = '".$request->no_sj."' GROUP BY no"));
+                // dd($counters);
                 // $datefrForm = Carbon::createFromFormat('d/m/Y', $dtfr)->format('Y-m-d');
                 // $datetoForm = Carbon::createFromFormat('d/m/Y', $dtto)->format('Y-m-d');
 
