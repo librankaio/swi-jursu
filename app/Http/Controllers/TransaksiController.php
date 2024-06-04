@@ -23,9 +23,10 @@ class TransaksiController extends Controller
                 // $datetoForm = Carbon::createFromFormat('d/m/Y', $dtto)->format('Y-m-d');
 
                 // $results = DB::table('tsj')->get();
-                $results = DB::table('vwpacklist')->get();
+                $results = DB::table('vwpacklist')->where('','=',$request->no_sj)->get();
                 // $counters = DB::table('mwhse')->groupBy('no')->get();
-                $counters = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND no = '".$request->no_sj."' GROUP BY no"));
+                // $counters = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND no = '".$request->no_sj."' GROUP BY no"));
+                $counters = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' GROUP BY no"));
                 // dd($counters);
                 // $results = DB::table('tsj')->whereBetween('dptanggal', [$datefrForm, $datetoForm])->where('tstatus', '=', 1)->where('jenis_dokumen', '=', $jenisdok)->where('dpnomor', '=', $searchtext)->paginate(10);
 
@@ -50,7 +51,7 @@ class TransaksiController extends Controller
                 $dtto = $request->input('dtto');
                 $jenisdok = $request->input('jenisdok');
                 // $counters = DB::table('mwhse')->get();
-                $counters = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND no = '".$request->no_sj."' GROUP BY no"));
+                $counters = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' GROUP BY no"));
                 // dd($counters);
                 // $datefrForm = Carbon::createFromFormat('d/m/Y', $dtfr)->format('Y-m-d');
                 // $datetoForm = Carbon::createFromFormat('d/m/Y', $dtto)->format('Y-m-d');
@@ -58,7 +59,7 @@ class TransaksiController extends Controller
                 // $results = DB::table('pemasukan_dokumen')->whereBetween('dptanggal', [$datefrForm, $datetoForm])->where('tstatus', '=', 1)->where('jenis_dokumen', '=', $jenisdok)->where('dpnomor', '=', $searchtext)->paginate(10);
 
                 // $results = DB::table('tsj')->get();
-                $results = DB::table('vwpacklist')->get();
+                $results = DB::table('vwpacklist')->where('','=',$request->no_sj)->get();
 
                 return view('pages.transaksi', [
                     'results' => $results,
