@@ -49,7 +49,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 </head>
 
-<body onload="hide_loading()">
+<body onload="hide_loading()" class="sidebar-mini">
     <div class="loading overlay">
         <div class="lds-roller">
           <div></div>
@@ -74,7 +74,7 @@
                                     class="fas fa-search"></i></a></li>
                     </ul>
                 </form>
-                <ul class="navbar-nav navbar-right">
+                {{-- <ul class="navbar-nav navbar-right">
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="{{ asset('../assets/img/avatar/avatar-1.png') }}"
@@ -87,7 +87,7 @@
                             </a>
                         </div>
                     </li>
-                </ul>
+                </ul> --}}
             </nav>
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
