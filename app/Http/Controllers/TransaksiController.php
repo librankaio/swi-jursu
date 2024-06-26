@@ -73,7 +73,7 @@ class TransaksiController extends Controller
     }
 
     public function update(Transaksi $transaksi){
-        // dd(request()->all());
+        dd(request()->all());
         $count=0;
         $countrows = sizeof(request('checks'));
         $status = "";
@@ -98,5 +98,47 @@ class TransaksiController extends Controller
         if($count == $countrows){
             return redirect()->route('packlist')->with('success', 'Data berhasil di Update');
         }
+    }
+
+    public function getNoSj(Request $request){
+        $no_sj = $request->no_sj;
+        if($no_sj == ''){
+            $items = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' GROUP BY no"));
+        }else{
+            $items = DB::select(DB::raw("SELECT no,name_mlokasi2,tdate FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND no = '$no_sj'"));
+        }
+        return json_encode($items);
+    }
+
+    public function  getItem(Request $request){
+        $search = $request->search;
+        $no_sj = $request->no_sj;
+
+        if($search == ''){
+            $items = DB::select(DB::raw("SELECT code_mitem,name_mitem FROM tsj WHERE ISNULL(sendstat,'N') = 'N' and no = '$no_sj'"));
+        }else{
+            $items = DB::select(DB::raw("SELECT code_mitem,name_mitem FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND no = '$no_sj' and code_mitem like '%$search%'"));
+        }
+        
+        $response = array();
+        foreach($items as $item){
+            $response[] = array(
+                "id"=>$item->code_mitem,
+                "text"=>$item->code_mitem." - ".$item->name_mitem
+            );
+        }
+
+      return response()->json($response);
+    }
+    public function  getCodeItem(Request $request){
+        $search = $request->search;
+
+        if($search == ''){
+            $items = DB::select(DB::raw("SELECT code_mitem,name_mitem FROM tsj WHERE ISNULL(sendstat,'N') = 'N'"));
+        }else{
+            $items = DB::select(DB::raw("SELECT code_mitem,name_mitem FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND code = '$search'"));
+        }
+        
+        return json_encode($items);
     }
 }

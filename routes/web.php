@@ -20,3 +20,6 @@ Route::get('/', function () {
 
 Route::get('/packlist', [TransaksiController::class, 'index'])->name('packlist');
 Route::get('/packlist/update', [TransaksiController::class, 'update'])->name('packlistupdate');
+Route::post('/getnosj', [TransaksiController::class, 'getNoSj'])->name('getnosj');
+Route::post('/getitem', [TransaksiController::class, 'getItem'])->name('getitem');
+Route::post('/getcodeitem', [TransaksiController::class, 'getCodeItem'])->name('getcodeitem');

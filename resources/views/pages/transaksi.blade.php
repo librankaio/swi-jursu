@@ -59,7 +59,15 @@
                                                 <option>{{ $counter->no}}</option>
                                                 @endforeach
                                         </select>
-                                    </div>                                
+                                    </div>       
+                                    <div class="form-group">
+                                        <label>Tujuan</label>
+                                        <input type="text" class="form-control" id="tujuan" name="tujuan" readonly>
+                                    </div>  
+                                    <div class="form-group">
+                                        <label>Tanggal</label>
+                                        <input type="date" class="form-control" name="dt" id="dt" value="{{ date("Y-m-d") }}">
+                                    </div>                          
                                 </div>
                             </div>
                             {{-- <div class="row">
@@ -82,13 +90,51 @@
                             <div class="row">
                                 <div class="col-md-12 d-flex justify-content-end">                    
                                     <div class="form-group">
-                                        <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">View</button>
+                                        {{-- <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">View</button> --}}
                                     </div>                                
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="card" id="card_items" style="border: 1px solid lightblue;">
+                {{-- <div class="card" id="card_items" style="border: 1px solid lightblue; [display:none;]"> --}}
+                    <div class="card-header">
+                        <h4>Add Items</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Kode</label>
+                                    <select class="form-control select2" id="kode">
+                                        <option></option>
+                                        {{-- @foreach($mitems as $data => $item)                                        
+                                        <option value="{{ $item->code }}">{{ $item->code." - ".$item->name }}</option>
+                                        @endforeach --}}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nama Item</label>
+                                    <input type="text" class="form-control" id="nama_item" disabled>
+                                </div>   
+                                <div class="form-group">
+                                    <a href="" id="addItem">
+                                        <i class="fa fa-plus" style="font-size:18pt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">    
+                                <div class="form-group">
+                                    <label>Quantity</label>
+                                    <input type="text" class="form-control" id="quantity" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-12 col-md-12 col-lg-12">
                 <form action="/packlist/update" method="GET">
@@ -106,6 +152,10 @@
                             </div>
                             <br>
                             <div class="table-responsive">
+                                <div class="form-group">
+                                    {{-- <label>counter</label> --}}
+                                    <input type="text" class="form-control" id="number_counter" value="0" hidden readonly>
+                                </div>
                                 <table class="table table-bordered" id="datatable">
                                     <thead>
                                         <tr>
@@ -116,34 +166,11 @@
                                             <th scope="col" class="border border-5" style="text-align: center;">Kode</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Nama</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Qty</th>
-                                            {{-- <th scope="col" colspan="1" class="border border-5" style="text-align: center;">Check</th> --}}
-                                            <th scope="col" class="border border-5" style="text-align: center;">Check</th>
-                                            <th scope="col" style="text-align: center; display:none;"></th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                        $no=0;
-                                        $dpnomor = ""; 
-                                        $bpbnomor = "";@endphp
-                                        @isset($results)
-                                        @foreach ($results as $key => $item)
-                                        @php $no++; @endphp 
-                                        <tr>
-                                            <th class='id-header border border-5' style='readonly:true; text-align: center;' headers="{{ $no }}">{{ $no }}</th>
-                                            <td class='border border-5'><input style='width:100%; text-align: center; width:170px; margin-left: 30px;' readonly class='noclass form-control' name='no_d[]' type='text' value='{{ $item->no }}'></td>
-                                            <td class='border border-5'><input style='width:100%; text-align: center; width:110px; margin-left: 25px;' readonly class='dateclass form-control' name='date_d[]' type='text' value='{{ date("Y-m-d", strtotime($item->tdate)) }}'></td>
-                                            <td class='border border-5'><input style='width:100%; text-align: center;' readonly class='lokasiclass form-control' name='lokasi_d[]' type='text' value='{{ $item->name_mlokasi2 }}'></td>
-                                            <td class='border border-5'><input style='width:100%; text-align: center; width:150px;' readonly class='codemitemclass form-control' name='codemitem_d[]' type='text' value='{{ $item->code_mitem }}'></td>
-                                            <td class='border border-5'><input style='width:100%; text-align: center;' readonly class='namemitemclass form-control' name='namemitem_d[]' type='text' value='{{ $item->name_mitem }}'></td>
-                                            <td class='border border-5'><input style='width:100%; text-align: center; width:50px;' readonly class='qtyclass form-control' name='qty_d[]' type='text' value='{{ number_format($item->qty) }}'></td>
-                                            {{-- <td class='border border-5'><input style='width:100%; text-align: center;' class='idclass form-control' name='id_d[]' type='text' value='{{ $item->id }}'></td> --}}
-                                            <td class='border border-5' style="display: none;"><input style='text-align: center;' class='idclass form-control' name='code_lokasi[]' type='text' value='{{ $item->code_mlokasi2 }}'></td>
-                                            <td class='border border-5'><input type="checkbox" name="checks[]" id="checkall"></td>
-                                            {{-- <td class='border border-5' style='padding-top: 20px; padding-left: 30px;'><input class="form-check-input" type="checkbox" name="checks[]" id="checkall"></td> --}}
-                                        </tr>
-                                        @endforeach
-                                        @endisset 
+                                        
                                     </tbody>                            
                                 </table>
                                 <br>
@@ -174,6 +201,159 @@
         $(document).ready(function() {
             $('.select2').select2({});
 
+            $("#no_sj").on('select2:select', function(e) {
+                var no_sj = $(this).val();
+                show_loading()
+                console.log(no_sj);
+                $.ajax({
+                    url: '{{ route('getnosj') }}', 
+                    method: 'post', 
+                    data: {'no_sj': no_sj}, 
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, 
+                    dataType: 'json', 
+                    success: function(response) {
+                        console.log(response);
+                            number_counter = Number($('#number_counter').val());
+                            for (i=0; i < response.length; i++) {
+                                if(response[i].no == no_sj){
+                                    console.log("contol");
+                                    $('#tujuan').val(response[i].name_mlokasi2);  
+                                    date =  response[i].tdate;     
+                                    $('#dt').val(date.substring(0, 10));                                  
+                                }
+                            }
+                            hide_loading();
+                    }
+                });                
+            });
+            
+            $("#kode").select2({
+                placeholder : 'Select Kode',
+                ajax: {
+                    url: "{{ route('getitem') }}",
+                    type: "post",
+                    dataType: "json",
+                    delay: 250,
+                    data: function (params) {
+                        var no_sj = $("#no_sj").val();
+                        console.log(no_sj);
+
+                        var query = {
+                            _token: CSRF_TOKEN,
+                            search : params.term, //search term
+                            no_sj : params.no_sj || no_sj//no_sj term
+                        }
+                        // return {
+                            
+                        //     query
+                        // };
+                        return query;
+                        console.log("query"+query);
+                    },
+                    processResults: function (response) {
+                        console.log(response)                  
+                        return {
+                            results: response,          
+                        };
+                    },
+                    cache: true,
+                }
+            });
+
+            $("#kode").on('select2:select', function(e) {
+                var code = $(this).val();
+                show_loading()
+                console.log(code);
+                $.ajax({
+                    url: '{{ route('getcodeitem') }}', 
+                    method: 'post', 
+                    data: {'code': code}, 
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, 
+                    dataType: 'json', 
+                    success: function(response) {
+                        console.log(response);
+                            number_counter = Number($('#number_counter').val());
+                            for (i=0; i < response.length; i++) {
+                                if(response[i].code_mitem == code){
+                                    $('#nama_item').val(response[i].name_mitem);                               
+                                }
+                            }
+                            hide_loading();
+                    }
+                });                
+            });
+
+
+            var counter = $('#number_counter').val();
+            var counter_row = 0;
+            $(document).on("click", "#addItem", function(e) {                
+                e.preventDefault();
+                if($('#quantity').val() == 0){
+                    swal('WARNING', 'Quantity tidak boleh 0!', 'warning');
+                    return false;
+                }
+                no_sj = $("#no_sj").val();
+                tujuan = $("#tujuan").val();
+                tanggal = $("#dt").val();
+                kode = $("#kode").val();
+                nama_item = $("#nama_item").val();
+                quantity = $("#quantity").val();
+                if($("#no_sj").val() == 0 || $("#no_sj").val() == ''){
+                    swal('WARNING', 'Silahkan pilih nomer sj terlebih dahulu!', 'warning');
+                    return false;
+                }
+                    counter++;
+                    counter_row++;
+                    kode = $("#select2-kode-container").text();
+
+                    tablerow = `<tr row_id="${counter_row}" id='row_${counter_row}'>
+                                <th style='readonly:true;' row_th="${counter}" class='border border-5'>${counter}</th>
+                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='nosjclass form-control' name='nosj_d[]' type='text' value='${no_sj}'></td>
+                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='tujuanclass form-control' name='tujuan_d[]' type='text' value='${tujuan}'></td>
+                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='tanggalclass form-control' name='tanggal_d[]' type='text' value='${tanggal}'></td>
+                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='kodeclass form-control' name='kode_d[]' type='text' value='${kode}'></td>
+                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='namaitemclass form-control' name='nama_item_d[]' type='text' value='${nama_item}'></td>
+                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='${quantity}'></td>
+                                <td class='border border-5'><a title='Delete' class='delete'><i style='font-size:15pt;color:#6777ef;' class='fa fa-trash'></i></a></td>
+                                </tr>`;
+
+                    $("#datatable tbody").append(tablerow);
+
+                    $("#kode").prop('selectedIndex', 0).trigger('change');
+                    $("#nama_item").val('');
+                    $("#quantity").val(0);
+                    hide_loading()
+            });
+
+            $(document).on("click", ".delete", function(e) {
+                e.preventDefault();
+                var r = confirm("Delete Transaksi ?");
+                if (r == true) {
+                    // counter_id = $(this).closest('tr').find('.numberclass').val();
+                    $(this).closest('tr').remove();
+                    var table   = document.getElementById('datatable');
+                    for (var i = 1; i < table.rows.length; i++) 
+                    {
+                    var firstCol = table.rows[i].cells[0];
+                    firstCol.innerText = i;
+                    }
+                    console.log(table.rows.length);
+                    counter--;
+                    $('#number_counter').val(counter)
+                } else {
+                    return false;
+                }
+            });
+
+             // VALIDATE TRIGGER
+            $("#quantity").keyup(function(e){
+                if (/\D/g.test(this.value)){
+                    // Filter non-digits from input value.
+                    this.value = this.value.replace(/\D/g, '');
+                }
+            });
         });
 
         // $('#datatable').DataTable({
