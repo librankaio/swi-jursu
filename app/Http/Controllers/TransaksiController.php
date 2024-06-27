@@ -143,9 +143,9 @@ class TransaksiController extends Controller
         $search = $request->search;
 
         if($search == ''){
-            $items = DB::select(DB::raw("SELECT code_mitem,name_mitem FROM tsj WHERE ISNULL(sendstat,'N') = 'N'"));
+            $items = DB::select(DB::raw("SELECT code_mitem,name_mitem,qty FROM tsj WHERE ISNULL(sendstat,'N') = 'N'"));
         }else{
-            $items = DB::select(DB::raw("SELECT code_mitem,name_mitem FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND code = '$search'"));
+            $items = DB::select(DB::raw("SELECT code_mitem,name_mitem,qty FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND code = '$search'"));
         }
         
         return json_encode($items);

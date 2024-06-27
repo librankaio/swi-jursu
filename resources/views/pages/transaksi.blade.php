@@ -70,7 +70,7 @@
                                     </div>  
                                     <div class="form-group">
                                         <label>Tanggal</label>
-                                        <input type="date" class="form-control" name="dt" id="dt" value="{{ date("Y-m-d") }}" form="thisform">
+                                        <input type="date" class="form-control" name="dt" id="dt" value="{{ date("Y-m-d") }}" form="thisform" readonly>
                                     </div>                          
                                 </div>
                             </div>
@@ -134,6 +134,10 @@
                                 <div class="form-group">
                                     <label>Quantity</label>
                                     <input type="text" class="form-control" id="quantity" value="0">
+                                </div>
+                                <div class="form-group">
+                                    <label>Quantity Surat jalan</label>
+                                    <input type="text" class="form-control" id="quantity_sj" value="0" readonly>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +286,9 @@
                             number_counter = Number($('#number_counter').val());
                             for (i=0; i < response.length; i++) {
                                 if(response[i].code_mitem == code){
-                                    $('#nama_item').val(response[i].name_mitem);                               
+                                    $('#nama_item').val(response[i].name_mitem);   
+                                    qty = response[i].qty;
+                                    $('#quantity_sj').val(Number(qty).toFixed(0));                              
                                 }
                             }
                             hide_loading();
@@ -313,14 +319,14 @@
                     counter_row++;
                     kode = $("#select2-kode-container").text();
 
-                    tablerow = `<tr row_id="${counter_row}" id='row_${counter_row}'>
+                    tablerow = `<tr row_id="${counter_row}" id='row_${counter_row}' class='text-center'>
                                 <th style='readonly:true;' row_th="${counter}" class='border border-5'>${counter}</th>
-                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='nosjclass form-control' name='nosj_d[]' type='text' value='${no_sj}'></td>
-                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='tujuanclass form-control' name='tujuan_d[]' type='text' value='${tujuan}'></td>
+                                <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='nosjclass form-control' name='nosj_d[]' type='text' value='${no_sj}'></td>
                                 <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='tanggalclass form-control' name='tanggal_d[]' type='text' value='${tanggal}'></td>
-                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='kodeclass form-control' name='kode_d[]' type='text' value='${kode}'></td>
-                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='namaitemclass form-control' name='nama_item_d[]' type='text' value='${nama_item}'></td>
-                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='${quantity}'></td>
+                                <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='tujuanclass form-control' name='tujuan_d[]' type='text' value='${tujuan}'></td>
+                                <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='kodeclass form-control' name='kode_d[]' type='text' value='${kode}'></td>
+                                <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='namaitemclass form-control' name='nama_item_d[]' type='text' value='${nama_item}'></td>
+                                <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='${quantity}'></td>
                                 <td class='border border-5'><a title='Delete' class='delete'><i style='font-size:15pt;color:#6777ef;' class='fa fa-trash'></i></a></td>
                                 </tr>`;
 
@@ -329,6 +335,7 @@
                     $("#kode").prop('selectedIndex', 0).trigger('change');
                     $("#nama_item").val('');
                     $("#quantity").val(0);
+                    $("#quantity_sj").val(0);
                     hide_loading()
             });
 
