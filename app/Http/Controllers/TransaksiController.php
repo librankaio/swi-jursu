@@ -73,27 +73,36 @@ class TransaksiController extends Controller
     }
 
     public function update(Transaksi $transaksi){
-        dd(request()->all());
+        // dd(request()->all());
         $count=0;
-        $countrows = sizeof(request('checks'));
+        $countrows = sizeof(request('nosj_d'));
         $status = "";
-        for ($i=0;$i<sizeof(request('checks'));$i++){
-            // dd((float)request('qty_d')[$i]);
-            if(request('checks')[$i] == "on"){
-                $status = "Y";
-            }
+        for ($i=0;$i<sizeof(request('nosj_d'));$i++){
             Transaksi::where('code_mitem', '=', request('codemitem_d')[$i])->update([
-                // 'sendstat' => request('checks')[$i],
-                'sendstat' => $status,
+                'sendstat' => "Y",
             ]);
-            // DB::update(DB::raw("update mitemwhse set qty = qty - ".(float)request('qty_d')[$i]." where code_mitem = '".request('codemitem_d')[$i]."' and code_mwhse = 'HDH'"));
-            // DB::update(DB::raw("update mitemwhse set qty = qty + ".(float)request('qty_d')[$i]." where code_mitem = '".request('codemitem_d')[$i]."' and code_mwhse = '".request('code_lokasi')[$i]."'"));
-            
-            // DB::update(DB::raw("update mitemwhse set stock -= ".(float)request('qty_d')[$i]." WHERE code_mitem = '".request('codemitem_d')[$i]."' and code_mwhse = '".request('code_lokasi')[$i]."'"));
-            DB::update(DB::raw("update mitemwhse set qty -= ".(float)request('qty_d')[$i]." WHERE code_mitem = '".request('codemitem_d')[$i]."' and code_mwhse = '".request('code_lokasi')[$i]."'"));
+            DB::update(DB::raw("update mitemwhse set qty -= ".(float)request('quantity_d')[$i]." WHERE code_mitem = '".request('kode_d')[$i]."' and code_mwhse = '".request('code_tujuan')[$i]."'"));
             DB::update(DB::raw("update tsj SET sendstat = 'Y' WHERE no = '".request('no_d')[$i]."' and code_mitem = '".request('codemitem_d')[$i]."'"));
             $count++;
+
         }
+        // for ($i=0;$i<sizeof(request('checks'));$i++){
+        //     // dd((float)request('qty_d')[$i]);
+        //     if(request('checks')[$i] == "on"){
+        //         $status = "Y";
+        //     }
+        //     Transaksi::where('code_mitem', '=', request('codemitem_d')[$i])->update([
+        //         // 'sendstat' => request('checks')[$i],
+        //         'sendstat' => $status,
+        //     ]);
+        //     // DB::update(DB::raw("update mitemwhse set qty = qty - ".(float)request('qty_d')[$i]." where code_mitem = '".request('codemitem_d')[$i]."' and code_mwhse = 'HDH'"));
+        //     // DB::update(DB::raw("update mitemwhse set qty = qty + ".(float)request('qty_d')[$i]." where code_mitem = '".request('codemitem_d')[$i]."' and code_mwhse = '".request('code_lokasi')[$i]."'"));
+            
+        //     // DB::update(DB::raw("update mitemwhse set stock -= ".(float)request('qty_d')[$i]." WHERE code_mitem = '".request('codemitem_d')[$i]."' and code_mwhse = '".request('code_lokasi')[$i]."'"));
+        //     DB::update(DB::raw("update mitemwhse set qty -= ".(float)request('qty_d')[$i]." WHERE code_mitem = '".request('codemitem_d')[$i]."' and code_mwhse = '".request('code_lokasi')[$i]."'"));
+        //     DB::update(DB::raw("update tsj SET sendstat = 'Y' WHERE no = '".request('no_d')[$i]."' and code_mitem = '".request('codemitem_d')[$i]."'"));
+        //     $count++;
+        // }
         
         if($count == $countrows){
             return redirect()->route('packlist')->with('success', 'Data berhasil di Update');
@@ -105,7 +114,7 @@ class TransaksiController extends Controller
         if($no_sj == ''){
             $items = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' GROUP BY no"));
         }else{
-            $items = DB::select(DB::raw("SELECT no,name_mlokasi2,tdate FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND no = '$no_sj'"));
+            $items = DB::select(DB::raw("SELECT no,code_mlokasi2,name_mlokasi2,tdate FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND no = '$no_sj'"));
         }
         return json_encode($items);
     }

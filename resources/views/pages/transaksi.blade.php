@@ -49,7 +49,7 @@
                                 <div class="col-md-12">                                
                                     <div class="form-group">
                                         <label>No Surat Jalan</label>
-                                        <select class="form-control select2" id="no_sj" name="no_sj">
+                                        <select class="form-control select2" id="no_sj" name="no_sj" form="thisform">
                                                 @if(request('no_sj') != NULL)
                                                 <option selected>{{ $_GET['no_sj']}}</option>
                                                 @else
@@ -62,11 +62,15 @@
                                     </div>       
                                     <div class="form-group">
                                         <label>Tujuan</label>
-                                        <input type="text" class="form-control" id="tujuan" name="tujuan" readonly>
+                                        <input type="text" class="form-control" id="tujuan" name="tujuan" readonly form="thisform">
+                                    </div>  
+                                    <div class="form-group" hidden>
+                                        <label>Code Tujuan</label>
+                                        <input type="text" class="form-control" id="code_tujuan" name="code_tujuan" readonly form="thisform">
                                     </div>  
                                     <div class="form-group">
                                         <label>Tanggal</label>
-                                        <input type="date" class="form-control" name="dt" id="dt" value="{{ date("Y-m-d") }}">
+                                        <input type="date" class="form-control" name="dt" id="dt" value="{{ date("Y-m-d") }}" form="thisform">
                                     </div>                          
                                 </div>
                             </div>
@@ -137,7 +141,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-12 col-lg-12">
-                <form action="/packlist/update" method="GET">
+                <form action="/packlist/update" method="GET" id="thisform">
                     <div class="card">
                         <div class="card-body">
                             <div class="row pb-3">
@@ -219,6 +223,7 @@
                                 if(response[i].no == no_sj){
                                     console.log("contol");
                                     $('#tujuan').val(response[i].name_mlokasi2);  
+                                    $('#code_tujuan').val(response[i].code_mlokasi2);  
                                     date =  response[i].tdate;     
                                     $('#dt').val(date.substring(0, 10));                                  
                                 }
