@@ -240,7 +240,7 @@
             $("#kode").select2({
                 placeholder : 'Select Kode',
                 ajax: {
-                    url: "{{ route('getitem') }}",
+                    url: '{{ route('getitem') }}',
                     type: "post",
                     dataType: "json",
                     delay: 250,

@@ -73,7 +73,6 @@ class TransaksiController extends Controller
     }
 
     public function update(Transaksi $transaksi){
-        // dd(request()->all());
         $count=0;
         $countrows = sizeof(request('nosj_d'));
         $status = "";
@@ -81,8 +80,8 @@ class TransaksiController extends Controller
             Transaksi::where('code_mitem', '=', request('kode_d')[$i])->update([
                 'sendstat' => "Y",
             ]);
-            DB::update(DB::raw("update mitemwhse set qty -= ".(float)request('quantity_d')[$i]." WHERE code_mitem = '".request('kode_d')[$i]."' and code_mwhse = '".request('code_tujuan')[$i]."'"));
-            DB::update(DB::raw("update tsj SET sendstat = 'Y' WHERE no = '".request('nosj_d')[$i]."' and code_mitem = '".request('kode_d')[$i]."'"));
+            DB::update(DB::raw("update mitemwhse set qty -= ".(float)request('quantity_d')[$i]." WHERE code_mitem = '".strtok(request('kode_d')[$i], " ")."' and code_mwhse = '".request('code_tujuan')[$i]."'"));
+            DB::update(DB::raw("update tsj SET sendstat = 'Y' WHERE no = '".request('nosj_d')[$i]."' and code_mitem = '".strtok(request('kode_d')[$i], " ")."'"));
             $count++;
 
         }
