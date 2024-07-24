@@ -82,6 +82,7 @@ class TransaksiController extends Controller
             // ]);
             DB::update(DB::raw("update mitemwhse set qty -= ".(float)request('quantity_d')[$i]." WHERE code_mitem = '".strtok(request('kode_d')[$i], " ")."' and code_mwhse = '".request('code_tujuan')[$i]."'"));
             DB::update(DB::raw("update tsj SET sendstat = 'Y' WHERE no = '".request('nosj_d')[$i]."' and code_mitem = '".strtok(request('kode_d')[$i], " ")."'"));
+            DB::update(DB::raw("UPDATE tsj set docstat = 'C' WHERE dbo.fgetsendstattsj('".request('nosj_d')[$i]."') = 0 AND no = '".request('nosj_d')[$i]."'"));
             $count++;
 
         }
