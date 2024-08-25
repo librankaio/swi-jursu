@@ -26,124 +26,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-4 col-lg-4">
-                <form action="/packlist" method="GET">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Filter Surat Jalan</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                {{-- <div class="col-md-6">                    
-                                    <div class="form-group">
-                                        <label>Periode</label>
-                                        <input type="date" class="form-control" name="dtfr" value="@php if(request('dtfr')==NULL){ echo date('Y-m-d');} else{ echo $_GET['dtfr']; } @endphp">
-                                    </div>                                
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>s/d</label>
-                                        <input type="date" class="form-control" name="dtto" value="@php if(request('dtto')==NULL){ echo date('Y-m-d');} else{ echo $_GET['dtto']; } @endphp">
-                                    </div>
-                                </div> --}}
-                                <div class="col-md-12">                                
-                                    <div class="form-group">
-                                        <label>No Surat Jalan</label>
-                                        <select class="form-control select2" id="no_sj" name="no_sj" form="thisform">
-                                                @if(request('no_sj') != NULL)
-                                                <option selected>{{ $_GET['no_sj']}}</option>
-                                                @else
-                                                <option disabled selected>--Select No SJ--</option>
-                                                @endif  
-                                                @foreach($counters as $counter)
-                                                <option>{{ $counter->no}}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>       
-                                    <div class="form-group">
-                                        <label>Tujuan</label>
-                                        <input type="text" class="form-control" id="tujuan" name="tujuan" readonly form="thisform">
-                                    </div>  
-                                    <div class="form-group" hidden>
-                                        <label>Code Tujuan</label>
-                                        <input type="text" class="form-control" id="code_tujuan" name="code_tujuan" readonly form="thisform">
-                                    </div>  
-                                    <div class="form-group">
-                                        <label>Tanggal</label>
-                                        <input type="date" class="form-control" name="dt" id="dt" value="{{ date("Y-m-d") }}" form="thisform" readonly>
-                                    </div>                          
-                                </div>
-                            </div>
-                            {{-- <div class="row">
-                                <div class="col-md-12">                    
-                                    <div class="form-group">
-                                        <label>Counter</label>
-                                        <select class="form-control select2" name="counter" id="counter">
-                                            @if(request('counter') == NULL)
-                                            <option disabled selected>--Select Counter--</option>
-                                            @else
-                                            <option selected>@php echo $_GET['counter']; @endphp</option>
-                                            @endif
-                                            @foreach($counters as $data => $counter)
-                                            <option>{{ $counter->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>                                
-                                </div>
-                            </div> --}}
-                            <div class="row">
-                                <div class="col-md-12 d-flex justify-content-end">                    
-                                    <div class="form-group">
-                                        {{-- <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">View</button> --}}
-                                    </div>                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-12 col-md-6 col-lg-6">
-                <div class="card" id="card_items" style="border: 1px solid lightblue;">
-                {{-- <div class="card" id="card_items" style="border: 1px solid lightblue; [display:none;]"> --}}
-                    <div class="card-header">
-                        <h4>Add Items</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Kode</label>
-                                    <select class="form-control select2" id="kode">
-                                        <option></option>
-                                        {{-- @foreach($mitems as $data => $item)                                        
-                                        <option value="{{ $item->code }}">{{ $item->code." - ".$item->name }}</option>
-                                        @endforeach --}}
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Nama Item</label>
-                                    <input type="text" class="form-control" id="nama_item" disabled>
-                                </div>   
-                                <div class="form-group">
-                                    <a href="" id="addItem">
-                                        <i class="fa fa-plus" style="font-size:18pt"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">    
-                                <div class="form-group">
-                                    <label>Quantity</label>
-                                    <input type="text" class="form-control" id="quantity" value="0">
-                                </div>
-                                <div class="form-group">
-                                    <label>Quantity Surat jalan</label>
-                                    <input type="text" class="form-control" id="quantity_sj" value="0" readonly>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-12 col-md-12 col-lg-12">
                 <form action="/packlist/update" method="GET" id="thisform">
                     <div class="card">
@@ -168,17 +50,40 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" class="border border-5" style="text-align: center;">No</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">No SJ</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Tanggal SJ</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Tujuan</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Kode</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Nama</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Qty</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">No Pembelian</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Tanggal</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Supplier</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">No Reff</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Subtotal</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Pajak /pcs</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Pajak Total</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Discount Total</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Grand Total</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Note</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Approval</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        @php $counter = 0 @endphp
+                                        @foreach($results as $data => $item)
+                                        @php $counter++ @endphp
+                                        <tr row_id="{{ $counter }}" id='row_{{ $counter }}' class='text-center'>
+                                            <th style='readonly:true;' row_th="{{ $counter }}" class='border border-5'>{{ $counter}}</th>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='nosjclass form-control' name='nosj_d[]' type='text' value='{{ $item->no }}'></td>
+                                            <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='tanggalclass form-control' name='tanggal_d[]' type='text' value='{{ $item->tdate }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='tujuanclass form-control' name='tujuan_d[]' type='text' value='{{ $item->name_msupp }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='kodeclass form-control' name='kode_d[]' type='text' value='{{ $item->refno }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='namaitemclass form-control' name='nama_item_d[]' type='text' value='{{ $item->subtotalheader }}'></td>
+                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->taxpcg }}'></td>
+                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->taxtotal }}'></td>
+                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->disctotal }}'></td>
+                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->grdtotal }}'></td>
+                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->grdtotal }}'></td>
+                                            <td><input class="form-check-input checkbox" type="checkbox" name="read_mitem" value="Y"></td>
+                                            <td class='border border-5'><a title='Delete' class='delete'><i style='font-size:15pt;color:#6777ef;' class='fa fa-trash'></i></a></td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>                            
                                 </table>
                                 <br>

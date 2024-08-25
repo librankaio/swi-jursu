@@ -9,64 +9,10 @@ use Illuminate\Support\Facades\DB;
 class PembelianController extends Controller
 {
     public function index(Request $request){
-        // $counters = DB::table('mwhse')->get();
-        $counters = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' GROUP BY no"));
-        if (isset($request->no_sj)) {
-            // dd($request->all());
-            if ($request->searchtext == null) {
-
-                $dtfr = $request->input('dtfr');
-                $dtto = $request->input('dtto');
-                // $datefrForm = Carbon::createFromFormat('d/m/Y', $dtfr)->format('Y-m-d');
-                // $datetoForm = Carbon::createFromFormat('d/m/Y', $dtto)->format('Y-m-d');
-
-                // $results = DB::table('tsj')->get();
-                $results = DB::table('vwpacklist')->where('no','=',$request->no_sj)->get();
-                // $counters = DB::table('mwhse')->groupBy('no')->get();
-                // $counters = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' AND no = '".$request->no_sj."' GROUP BY no"));
-                $counters = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' GROUP BY no"));
-                // dd($counters);
-                // $results = DB::table('tsj')->whereBetween('dptanggal', [$datefrForm, $datetoForm])->where('tstatus', '=', 1)->where('jenis_dokumen', '=', $jenisdok)->where('dpnomor', '=', $searchtext)->paginate(10);
-
-                // $query = DB::select('EXEC rptTest ?,?,?',[$datefrForm,$datetoForm,'BC 4.0']);
-
-                $page = request('page', 1);
-                $pageSize = 25;
-                $query = DB::table('vwpacklist')->get();
-                $offset = ($page * $pageSize) - $pageSize;
-                // $data = array_slice($query, $offset, $pageSize, true);
-                // $results = new \Illuminate\Pagination\LengthAwarePaginator($data, count($data), $pageSize, $page);
-
-               
-
-                return view('pages.pembelian', [
-                    'results' => $results,
-                    'counters' => $counters
-                ]);
-            } else if ($request->searchtext != null) {
-                $searchtext = $request->searchtext;
-                $dtfr = $request->input('dtfr');
-                $dtto = $request->input('dtto');
-                $jenisdok = $request->input('jenisdok');
-                // $counters = DB::table('mwhse')->get();
-                $counters = DB::select(DB::raw("SELECT no FROM tsj WHERE ISNULL(sendstat,'N') = 'N' GROUP BY no"));
-                // dd($counters);
-                // $datefrForm = Carbon::createFromFormat('d/m/Y', $dtfr)->format('Y-m-d');
-                // $datetoForm = Carbon::createFromFormat('d/m/Y', $dtto)->format('Y-m-d');
-
-                // $results = DB::table('pemasukan_dokumen')->whereBetween('dptanggal', [$datefrForm, $datetoForm])->where('tstatus', '=', 1)->where('jenis_dokumen', '=', $jenisdok)->where('dpnomor', '=', $searchtext)->paginate(10);
-
-                // $results = DB::table('tsj')->get();
-                $results = DB::table('vwpacklist')->where('no','=',$request->no_sj)->get();
-
-                return view('pages.pembelian', [
-                    'results' => $results,
-                    'counters' => $counters,
-                ]);
-            }
-        }
+        $results = DB::select(DB::raw("select no, tdate, name_msupp, refno, subtotalheader, taxpcg, taxtotal, disctotal, grdtotal, note from tpo where tstatus = 1 and approved = 'N' group by no, tdate, name_msupp, refno, subtotalheader, taxpcg, taxtotal, disctotal, grdtotal, note"));
+        
         return view('pages.pembelian',[
-            'counters' => $counters,
+            'results' => $results,
         ]);
     }
 
