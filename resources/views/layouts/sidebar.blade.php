@@ -7,9 +7,9 @@
             <li><a class="nav-link" href="{{ route('produk') }}">Produk</a></li>  
             <li><a class="nav-link" href="{{ route('penjualan') }}">Penjualan</a></li>  
         </ul> --}}
-        <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Transaksi</span></a></li>
-        <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Pembelian</span></a></li>
-        <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Surat Jalan & Returs</span></a></li>
+        <li><a class="nav-link" href="{{ route('packlist') }}"><i class="fas fa-cubes"></i> <span>Transaksi</span></a></li>
+        <li><a class="nav-link" href="{{ route('pembelian') }}"><i class="fas fa-cubes"></i> <span>Pembelian</span></a></li>
+        <li><a class="nav-link" href="{{ route('sjretur') }}"><i class="fas fa-cubes"></i> <span>Surat Jalan & Returs</span></a></li>
         {{-- <li><a class="nav-link" href="{{ route('produk') }}"><i class="fas fa-cubes"></i> <span>Produk</span></a></li>
         <li><a class="nav-link" href="{{ route('stock') }}"><i class="fas fa-cubes"></i> <span>Tambah Stock</span></a></li>
         <li><a class="nav-link" href="{{ route('penjualan') }}"><i class="fas fa-cubes"></i> <span>Penjualan</span></a></li>

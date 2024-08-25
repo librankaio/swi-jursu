@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\SjReturController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +26,7 @@ Route::get('/packlist/update', [TransaksiController::class, 'update'])->name('pa
 Route::post('/getnosj', [TransaksiController::class, 'getNoSj'])->name('getnosj');
 Route::post('/getitem', [TransaksiController::class, 'getItem'])->name('getitem');
 Route::post('/getcodeitem', [TransaksiController::class, 'getCodeItem'])->name('getcodeitem');
+
+Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian');
+
+Route::get('/sjretur', [SjReturController::class, 'index'])->name('sjretur');
