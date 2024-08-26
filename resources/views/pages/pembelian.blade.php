@@ -54,10 +54,10 @@
                                             <th scope="col" class="border border-5" style="text-align: center;">Tanggal</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Supplier</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">No Reff</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Subtotal</th>
+                                            {{-- <th scope="col" class="border border-5" style="text-align: center;">Subtotal</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Pajak /pcs</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Pajak Total</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Discount Total</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Discount Total</th> --}}
                                             <th scope="col" class="border border-5" style="text-align: center;">Grand Total</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Note</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Approval</th>
@@ -74,13 +74,13 @@
                                             <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='tanggalclass form-control' name='tanggal_d[]' type='text' value='{{ $item->tdate }}'></td>
                                             <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='tujuanclass form-control' name='tujuan_d[]' type='text' value='{{ $item->name_msupp }}'></td>
                                             <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='kodeclass form-control' name='kode_d[]' type='text' value='{{ $item->refno }}'></td>
-                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='namaitemclass form-control' name='nama_item_d[]' type='text' value='{{ $item->subtotalheader }}'></td>
+                                            {{-- <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='namaitemclass form-control' name='nama_item_d[]' type='text' value='{{ $item->subtotalheader }}'></td>
                                             <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->taxpcg }}'></td>
                                             <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->taxtotal }}'></td>
-                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->disctotal }}'></td>
-                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->grdtotal }}'></td>
-                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->grdtotal }}'></td>
-                                            <td><input class="form-check-input checkbox" type="checkbox" name="read_mitem" value="Y"></td>
+                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->disctotal }}'></td> --}}
+                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ number_format($item->grdtotal, 0, '.', '.') }}'></td>
+                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->note }}'></td>
+                                            <td class='border border-5 pb-4'><input class="form-check-input checkbox" type="checkbox" name="read_mitem" value="Y"></td>
                                             <td class='border border-5'><a title='Delete' class='delete'><i style='font-size:15pt;color:#6777ef;' class='fa fa-trash'></i></a></td>
                                         </tr>
                                         @endforeach
