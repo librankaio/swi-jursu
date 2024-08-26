@@ -95,4 +95,15 @@ class PembelianController extends Controller
         
         return json_encode($items);
     }
+    public function  getDetailItem(Request $request){
+        $code = $request->code;
+
+        if($code == ''){
+            $items = DB::select(DB::raw("select code_mitem, name_mitem, code_muom, qty, price, disc1, disc2, disc3, subtotal from tpo where tstatus = 1 and no = '$code'"));
+        }else{
+            $items = DB::select(DB::raw("select code_mitem, name_mitem, code_muom, qty, price, disc1, disc2, disc3, subtotal from tpo where tstatus = 1 and no = '$code'"));
+        }
+        
+        return json_encode($items);
+    }
 }

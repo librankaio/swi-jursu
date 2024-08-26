@@ -70,7 +70,8 @@
                                         @php $counter++ @endphp
                                         <tr row_id="{{ $counter }}" id='row_{{ $counter }}' class='text-center'>
                                             <th style='readonly:true;' row_th="{{ $counter }}" class='border border-5'>{{ $counter}}</th>
-                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='nosjclass form-control' name='nosj_d[]' type='text' value='{{ $item->no }}'></td>
+                                            {{-- <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='nosjclass form-control' name='nosj_d[]' type='text' value='{{ $item->no }}'></td> --}}
+                                            <td class='border border-5'><a style="cursor: pointer;" onclick="showDetailModal()" id="anchor">{{ $item->no }}</a></td>
                                             <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='tanggalclass form-control' name='tanggal_d[]' type='text' value='{{ $item->tdate }}'></td>
                                             <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='tujuanclass form-control' name='tujuan_d[]' type='text' value='{{ $item->name_msupp }}'></td>
                                             <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='kodeclass form-control' name='kode_d[]' type='text' value='{{ $item->refno }}'></td>
@@ -105,13 +106,90 @@
         </div>
     </div>
 </section>
+<div class="modal" tabindex="-1" id="mymodal">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Detail Item <div id="title_modal"></div></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="#" method="POST">
+            @csrf
+            <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-bordered" id="modaltable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="border border-5" style="text-align: center;">No</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Code Item</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Nama Item</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>                            
+                            </table>
+                        </div>
+                    </div>            
+            </div>
+            {{-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary mr-1" type="submit" id="confirm_modal" onclick="submitForm();">Save</button> 
+            </div> --}}
+        </form>
+      </div>
+    </div>
+</div>
 @stop
 @section('botscripts')
 <script type="text/javascript">
+    function showDetailModal(){
+        code = $("#anchor").text()
+        getDetailData(code);
+        $('#mymodal').modal({
+            backdrop: 'static',
+            keyboard: true, 
+            show: true,
+        });
+    }
+    $('#mymodal').on('hide.bs.modal', function (e) {
+        // alert("Jancuk");
+        $('#title_modal').html('');
+        $("#modaltable tbody").empty();
+        // do something...
+    });
+    function getDetailData(code){
+        $.ajax({
+            url: '{{ route('getdetailitem') }}', 
+            method: 'post', 
+            data: {'code': code}, 
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, 
+            dataType: 'json', 
+            success: function(response) {
+                $('#title_modal').html(code);
+                console.log(response);
+                    number_counter = Number($('#number_counter').val());
+                    for (i=0; i < response.length; i++) {
+                        tablerow = `<tr class='text-center'>
+                                    <th class='border border-5'>${i+1}</th>
+                                    <td class='border border-5'>${response[i].code_mitem}</td>
+                                    <td class='border border-5'>${response[i].name_mitem}</td>
+                                    <td class='border border-5'>${thousands_separators(parseFloat(response[i].qty))}</td>
+                                    </tr>`;
+                        $("#modaltable tbody").append(tablerow);
+                    }
+            }
+        }); 
+        console.log(code + " tolol");
+    }
     $(document).ready(function() {
         //CSRF TOKEN
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        $(document).ready(function() {
+        $(document).ready(function() {          
             $('.select2').select2({});
 
             $("#no_sj").on('select2:select', function(e) {
