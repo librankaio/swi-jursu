@@ -27,7 +27,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-12 col-lg-12">
-                <form action="/packlist/update" method="GET" id="thisform">
+                <form action="/pembelian/update" method="GET" id="thisform">
                     <div class="card">
                         <div class="card-body">
                             <div class="row pb-3">
@@ -61,7 +61,6 @@
                                             <th scope="col" class="border border-5" style="text-align: center;">Grand Total</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Note</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Approval</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,17 +71,17 @@
                                             <th style='readonly:true;' row_th="{{ $counter }}" class='border border-5'>{{ $counter}}</th>
                                             {{-- <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='nosjclass form-control' name='nosj_d[]' type='text' value='{{ $item->no }}'></td> --}}
                                             <td class='border border-5'><a style="cursor: pointer;" onclick="showDetailModal()" id="anchor">{{ $item->no }}</a></td>
-                                            <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='tanggalclass form-control' name='tanggal_d[]' type='text' value='{{ $item->tdate }}'></td>
-                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='tujuanclass form-control' name='tujuan_d[]' type='text' value='{{ $item->name_msupp }}'></td>
-                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='kodeclass form-control' name='kode_d[]' type='text' value='{{ $item->refno }}'></td>
+                                            <td class='border border-5' hidden><input style='width:120px;' disabled form='thisform' class='hdnnoclass form-control' name='hdn_no_d[]' type='text' value='{{ $item->no }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='tanggalclass form-control' type='text' value='{{ date("Y-m-d", strtotime($item->tdate)) }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='tujuanclass form-control' type='text' value='{{ $item->name_msupp }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='kodeclass form-control' type='text' value='{{ $item->refno }}'></td>
                                             {{-- <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='namaitemclass form-control' name='nama_item_d[]' type='text' value='{{ $item->subtotalheader }}'></td>
                                             <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->taxpcg }}'></td>
                                             <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->taxtotal }}'></td>
                                             <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->disctotal }}'></td> --}}
-                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ number_format($item->grdtotal, 0, '.', '.') }}'></td>
-                                            <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='{{ $item->note }}'></td>
-                                            <td class='border border-5 pb-4'><input class="form-check-input checkbox" type="checkbox" name="read_mitem" value="Y"></td>
-                                            <td class='border border-5'><a title='Delete' class='delete'><i style='font-size:15pt;color:#6777ef;' class='fa fa-trash'></i></a></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='quantityclass form-control' type='text' value='{{ number_format($item->grdtotal, 0, '.', '.') }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='noteclass form-control' type='text' value='{{ $item->note }}'></td>
+                                            <td class='border border-5 pl-5 pb-4'><input class="form-check-input checkbox" type="checkbox" name="approval_d[]" value="Y"></td>
                                         </tr>
                                         @endforeach
                                     </tbody>                            
@@ -94,8 +93,8 @@
                             <div class="row">
                                 <div class="col-md-12 d-flex justify-content-end">                    
                                     <div class="form-group">
-                                        <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">Update</button>
-                                <button class="btn btn-secondary" type="reset">Reset</button>
+                                        <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">Approve</button>
+                                {{-- <button class="btn btn-secondary" type="reset">Reset</button> --}}
                                     </div>                                
                                 </div>
                             </div>
@@ -320,6 +319,15 @@
                     $("#quantity").val(0);
                     $("#quantity_sj").val(0);
                     hide_loading()
+            });
+
+            $(document).on("click", ".form-check-input", function(e) {
+                // alert("oke checked!");
+                if ($(this).is(':checked')) {
+                    $(this).closest('tr').find('.hdnnoclass').prop('disabled', false);
+                }else{
+                    $(this).closest('tr').find('.hdnnoclass').prop('disabled', true);
+                }
             });
 
             $(document).on("click", ".delete", function(e) {

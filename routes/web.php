@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    phpinfo();
     return view('welcome');
 });
 
@@ -29,5 +28,6 @@ Route::post('/getdetailitem', [TransaksiController::class, 'getCodeItem'])->name
 Route::post('/getcodeitem', [TransaksiController::class, 'getCodeItem'])->name('getcodeitem');
 
 Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian');
+Route::get('/pembelian/update', [PembelianController::class, 'update'])->name('pembelianupdate');
 
 Route::get('/sjretur', [SjReturController::class, 'index'])->name('sjretur');
