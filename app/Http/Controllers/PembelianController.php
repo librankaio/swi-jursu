@@ -17,6 +17,7 @@ class PembelianController extends Controller
     }
 
     public function update(Transaksi $transaksi){
+        // dd(request()->all());
         $count=0;
         $countrows = sizeof(request('hdn_no_d'));
         for ($i=0;$i<sizeof(request('hdn_no_d'));$i++){            

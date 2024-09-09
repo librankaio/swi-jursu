@@ -10,10 +10,10 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Surat Jalan/Retur</h1>
+        <h1>Surat Jalan Retur</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Transaksi</a></div>
-            <div class="breadcrumb-item"><a class="text-muted">Surat Jalan/Retur</a></div>
+            <div class="breadcrumb-item"><a class="text-muted">Surat Jalan Retur</a></div>
         </div>
     </div>
     @php
@@ -26,126 +26,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-4 col-lg-4">
-                <form action="/packlist" method="GET">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Filter Surat Jalan</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                {{-- <div class="col-md-6">                    
-                                    <div class="form-group">
-                                        <label>Periode</label>
-                                        <input type="date" class="form-control" name="dtfr" value="@php if(request('dtfr')==NULL){ echo date('Y-m-d');} else{ echo $_GET['dtfr']; } @endphp">
-                                    </div>                                
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>s/d</label>
-                                        <input type="date" class="form-control" name="dtto" value="@php if(request('dtto')==NULL){ echo date('Y-m-d');} else{ echo $_GET['dtto']; } @endphp">
-                                    </div>
-                                </div> --}}
-                                <div class="col-md-12">                                
-                                    <div class="form-group">
-                                        <label>No Surat Jalan</label>
-                                        <select class="form-control select2" id="no_sj" name="no_sj" form="thisform">
-                                                @if(request('no_sj') != NULL)
-                                                <option selected>{{ $_GET['no_sj']}}</option>
-                                                @else
-                                                <option disabled selected>--Select No SJ--</option>
-                                                @endif  
-                                                @foreach($counters as $counter)
-                                                <option>{{ $counter->no}}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>       
-                                    <div class="form-group">
-                                        <label>Tujuan</label>
-                                        <input type="text" class="form-control" id="tujuan" name="tujuan" readonly form="thisform">
-                                    </div>  
-                                    <div class="form-group" hidden>
-                                        <label>Code Tujuan</label>
-                                        <input type="text" class="form-control" id="code_tujuan" name="code_tujuan" readonly form="thisform">
-                                    </div>  
-                                    <div class="form-group">
-                                        <label>Tanggal</label>
-                                        <input type="date" class="form-control" name="dt" id="dt" value="{{ date("Y-m-d") }}" form="thisform" readonly>
-                                    </div>                          
-                                </div>
-                            </div>
-                            {{-- <div class="row">
-                                <div class="col-md-12">                    
-                                    <div class="form-group">
-                                        <label>Counter</label>
-                                        <select class="form-control select2" name="counter" id="counter">
-                                            @if(request('counter') == NULL)
-                                            <option disabled selected>--Select Counter--</option>
-                                            @else
-                                            <option selected>@php echo $_GET['counter']; @endphp</option>
-                                            @endif
-                                            @foreach($counters as $data => $counter)
-                                            <option>{{ $counter->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>                                
-                                </div>
-                            </div> --}}
-                            <div class="row">
-                                <div class="col-md-12 d-flex justify-content-end">                    
-                                    <div class="form-group">
-                                        {{-- <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">View</button> --}}
-                                    </div>                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-12 col-md-6 col-lg-6">
-                <div class="card" id="card_items" style="border: 1px solid lightblue;">
-                {{-- <div class="card" id="card_items" style="border: 1px solid lightblue; [display:none;]"> --}}
-                    <div class="card-header">
-                        <h4>Add Items</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Kode</label>
-                                    <select class="form-control select2" id="kode">
-                                        <option></option>
-                                        {{-- @foreach($mitems as $data => $item)                                        
-                                        <option value="{{ $item->code }}">{{ $item->code." - ".$item->name }}</option>
-                                        @endforeach --}}
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Nama Item</label>
-                                    <input type="text" class="form-control" id="nama_item" disabled>
-                                </div>   
-                                <div class="form-group">
-                                    <a href="" id="addItem">
-                                        <i class="fa fa-plus" style="font-size:18pt"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">    
-                                <div class="form-group">
-                                    <label>Quantity</label>
-                                    <input type="text" class="form-control" id="quantity" value="0">
-                                </div>
-                                <div class="form-group">
-                                    <label>Quantity Surat jalan</label>
-                                    <input type="text" class="form-control" id="quantity_sj" value="0" readonly>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-12 col-md-12 col-lg-12">
-                <form action="/packlist/update" method="GET" id="thisform">
+                <form action="/sjretur/update" method="GET" id="thisform">
                     <div class="card">
                         <div class="card-body">
                             <div class="row pb-3">
@@ -168,17 +50,34 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" class="border border-5" style="text-align: center;">No</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">No SJ</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Tanggal SJ</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Tujuan</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Kode</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Nama</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Qty</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Delete</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">No Dokumen</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Tanggal</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Tipe Dokumen</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Lokasi Pengirim</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Lokasi Saat ini</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">User</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Note</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Approval</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        @php $counter = 0 @endphp
+                                        @foreach($results as $data => $item)
+                                        @php $counter++ @endphp
+                                        <tr row_id="{{ $counter }}" id='row_{{ $counter }}' class='text-center'>
+                                            <th style='readonly:true;' row_th="{{ $counter }}" class='border border-5'>{{ $counter}}</th>
+                                            {{-- <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='nosjclass form-control' name='nosj_d[]' type='text' value='{{ $item->no }}'></td> --}}
+                                            <td class='border border-5'><a style="cursor: pointer;" onclick="showDetailModal()" id="anchor">{{ $item->no }}</a></td>
+                                            <td class='border border-5' hidden><input style='width:120px;' disabled form='thisform' class='hdnnoclass form-control' name='hdn_no_d[]' type='text' value='{{ $item->no }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='tanggalclass form-control' type='text' value='{{ date("Y-m-d", strtotime($item->tdate)) }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='tujuanclass form-control' type='text' value='{{ $item->doctype }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='kodeclass form-control' type='text' value='{{ $item->name_mlokasi }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='kodeclass form-control' type='text' value='{{ $item->name_mlokasi2 }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='kodeclass form-control' type='text' value='{{ $item->username }}'></td>
+                                            <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='noteclass form-control' type='text' value='{{ $item->note }}'></td>
+                                            <td class='border border-5 pl-5 pb-4'><input class="form-check-input checkbox" type="checkbox" name="approval_d[]" value="Y"></td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>                            
                                 </table>
                                 <br>
@@ -188,8 +87,8 @@
                             <div class="row">
                                 <div class="col-md-12 d-flex justify-content-end">                    
                                     <div class="form-group">
-                                        <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">Update</button>
-                                <button class="btn btn-secondary" type="reset">Reset</button>
+                                        <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">Approve</button>
+                                {{-- <button class="btn btn-secondary" type="reset">Reset</button> --}}
                                     </div>                                
                                 </div>
                             </div>
@@ -200,13 +99,90 @@
         </div>
     </div>
 </section>
+<div class="modal" tabindex="-1" id="mymodal">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Detail Item <div id="title_modal"></div></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="#" method="POST">
+            @csrf
+            <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-bordered" id="modaltable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="border border-5" style="text-align: center;">No</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Code Item</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Nama Item</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>                            
+                            </table>
+                        </div>
+                    </div>            
+            </div>
+            {{-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary mr-1" type="submit" id="confirm_modal" onclick="submitForm();">Save</button> 
+            </div> --}}
+        </form>
+      </div>
+    </div>
+</div>
 @stop
 @section('botscripts')
 <script type="text/javascript">
+    function showDetailModal(){
+        code = $("#anchor").text()
+        getDetailData(code);
+        $('#mymodal').modal({
+            backdrop: 'static',
+            keyboard: true, 
+            show: true,
+        });
+    }
+    $('#mymodal').on('hide.bs.modal', function (e) {
+        // alert("Jancuk");
+        $('#title_modal').html('');
+        $("#modaltable tbody").empty();
+        // do something...
+    });
+    function getDetailData(code){
+        $.ajax({
+            url: '{{ route('getdetailretur') }}', 
+            method: 'post', 
+            data: {'code': code}, 
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, 
+            dataType: 'json', 
+            success: function(response) {
+                $('#title_modal').html(code);
+                console.log(response);
+                    number_counter = Number($('#number_counter').val());
+                    for (i=0; i < response.length; i++) {
+                        tablerow = `<tr class='text-center'>
+                                    <th class='border border-5'>${i+1}</th>
+                                    <td class='border border-5'>${response[i].code_mitem}</td>
+                                    <td class='border border-5'>${response[i].name_mitem}</td>
+                                    <td class='border border-5'>${thousands_separators(parseFloat(response[i].qty))}</td>
+                                    </tr>`;
+                        $("#modaltable tbody").append(tablerow);
+                    }
+            }
+        }); 
+        console.log(code + " tolol");
+    }
     $(document).ready(function() {
         //CSRF TOKEN
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        $(document).ready(function() {
+        $(document).ready(function() {          
             $('.select2').select2({});
 
             $("#no_sj").on('select2:select', function(e) {
@@ -337,6 +313,15 @@
                     $("#quantity").val(0);
                     $("#quantity_sj").val(0);
                     hide_loading()
+            });
+
+            $(document).on("click", ".form-check-input", function(e) {
+                // alert("oke checked!");
+                if ($(this).is(':checked')) {
+                    $(this).closest('tr').find('.hdnnoclass').prop('disabled', false);
+                }else{
+                    $(this).closest('tr').find('.hdnnoclass').prop('disabled', true);
+                }
             });
 
             $(document).on("click", ".delete", function(e) {

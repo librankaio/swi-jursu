@@ -31,3 +31,5 @@ Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian
 Route::get('/pembelian/update', [PembelianController::class, 'update'])->name('pembelianupdate');
 
 Route::get('/sjretur', [SjReturController::class, 'index'])->name('sjretur');
+Route::post('/getdetailretur', [SjReturController::class, 'getCodeItem'])->name('getdetailretur');
+Route::get('/sjretur/update', [SjReturController::class, 'update'])->name('sjreturupdate');
