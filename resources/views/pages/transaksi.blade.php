@@ -146,51 +146,53 @@
             </div>
             <div class="col-12 col-md-12 col-lg-12">
                 <form action="/packlist/update" method="GET" id="thisform">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row pb-3">
-                                <div class="col-6"></div>
-                                <div class="col-6 d-flex justify-content-end">
-                                    {{-- <button type="submit" formaction="rlaperoutletprint" formtarget="_blank" class="btn btn-success"><i
-                                        class="far fa-print"></i><span> Print</span></button> --}}
-                                        {{-- <a href="/tsuratjalan/{{ $item->id }}/print"
-                                            class="btn btn-icon icon-left btn-success" target="_blank"><i class="far fa-print">
-                                                Print</i></a> --}}
+                    <div class="custom-card-table">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row pb-3">
+                                    <div class="col-6"></div>
+                                    <div class="col-6 d-flex justify-content-end">
+                                        {{-- <button type="submit" formaction="rlaperoutletprint" formtarget="_blank" class="btn btn-success"><i
+                                            class="far fa-print"></i><span> Print</span></button> --}}
+                                            {{-- <a href="/tsuratjalan/{{ $item->id }}/print"
+                                                class="btn btn-icon icon-left btn-success" target="_blank"><i class="far fa-print">
+                                                    Print</i></a> --}}
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="table-responsive">
-                                <div class="form-group">
-                                    {{-- <label>counter</label> --}}
-                                    <input type="text" class="form-control" id="number_counter" value="0" hidden readonly>
-                                </div>
-                                <table class="table table-bordered" id="datatable">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="border border-5" style="text-align: center;">No</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">No SJ</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Tanggal SJ</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Tujuan</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Kode</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Nama</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Qty</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                    </tbody>                            
-                                </table>
                                 <br>
-                            </div>                                              
-                        </div>      
-                        <div class="card-footer text-right">
-                            <div class="row">
-                                <div class="col-md-12 d-flex justify-content-end">                    
+                                {{-- <div class="table-responsive"> --}}
                                     <div class="form-group">
-                                        <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">Update</button>
-                                <button class="btn btn-secondary" type="reset">Reset</button>
-                                    </div>                                
+                                        {{-- <label>counter</label> --}}
+                                        <input type="text" class="form-control" id="number_counter" value="0" hidden readonly>
+                                    </div>
+                                    <table class="table table-bordered" id="datatable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="border border-5" style="text-align: center;">No</th>
+                                                <th scope="col" class="border border-5" style="text-align: center;">No SJ</th>
+                                                <th scope="col" class="border border-5" style="text-align: center;">Tanggal SJ</th>
+                                                <th scope="col" class="border border-5" style="text-align: center;">Tujuan</th>
+                                                <th scope="col" class="border border-5" style="text-align: center;">Kode</th>
+                                                <th scope="col" class="border border-5" style="text-align: center;">Nama</th>
+                                                <th scope="col" class="border border-5" style="text-align: center;">Qty</th>
+                                                <th scope="col" class="border border-5" style="text-align: center;">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                        </tbody>                            
+                                    </table>
+                                    <br>
+                                {{-- </div>                                               --}}
+                            </div>      
+                            <div class="card-footer text-right">
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">                    
+                                        <div class="form-group">
+                                            <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">Update</button>
+                                    <button class="btn btn-secondary" type="reset">Reset</button>
+                                        </div>                                
+                                    </div>
                                 </div>
                             </div>
                         </div>

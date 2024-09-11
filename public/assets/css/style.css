@@ -4070,3 +4070,9 @@ body:not(.sidebar-mini)
         opacity: 0;
     }
 }
+
+@media screen and (min-width: 375px) and (max-device-width: 767px) {
+    .custom-card-table { 
+        width: 3600px;
+    }
+}
