@@ -146,7 +146,8 @@
 @section('botscripts')
 <script type="text/javascript">
     function showDetailModal(){
-        code = $("#anchor").text()
+        code = $("#anchor").text();
+        console.log(code);
         getDetailData(code);
         $('#mymodal').modal({
             backdrop: 'static',

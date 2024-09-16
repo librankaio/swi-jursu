@@ -24,12 +24,12 @@ Route::get('/packlist', [TransaksiController::class, 'index'])->name('packlist')
 Route::get('/packlist/update', [TransaksiController::class, 'update'])->name('packlistupdate');
 Route::post('/getnosj', [TransaksiController::class, 'getNoSj'])->name('getnosj');
 Route::post('/getitem', [TransaksiController::class, 'getItem'])->name('getitem');
-Route::post('/getdetailitem', [TransaksiController::class, 'getCodeItem'])->name('getdetailitem');
 Route::post('/getcodeitem', [TransaksiController::class, 'getCodeItem'])->name('getcodeitem');
 
 Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian');
 Route::get('/pembelian/update', [PembelianController::class, 'update'])->name('pembelianupdate');
+Route::post('/getdetailitem', [PembelianController::class, 'getDetailItem'])->name('getdetailitem');
 
 Route::get('/sjretur', [SjReturController::class, 'index'])->name('sjretur');
-Route::post('/getdetailretur', [SjReturController::class, 'getCodeItem'])->name('getdetailretur');
+Route::post('/getdetailretur', [SjReturController::class, 'getDetailItem'])->name('getdetailretur');
 Route::get('/sjretur/update', [SjReturController::class, 'update'])->name('sjreturupdate');
