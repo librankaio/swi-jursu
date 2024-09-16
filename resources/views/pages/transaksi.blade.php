@@ -189,7 +189,7 @@
                                 <div class="row">
                                     <div class="col-md-12 d-flex justify-content-end">                    
                                         <div class="form-group">
-                                            <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">Update</button>
+                                            <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">Approve</button>
                                     <button class="btn btn-secondary" type="reset">Reset</button>
                                         </div>                                
                                     </div>

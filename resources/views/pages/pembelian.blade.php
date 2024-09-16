@@ -126,6 +126,8 @@
                                         <th scope="col" class="border border-5" style="text-align: center;">Code Item</th>
                                         <th scope="col" class="border border-5" style="text-align: center;">Nama Item</th>
                                         <th scope="col" class="border border-5" style="text-align: center;">Quantity</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Price</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Subtotal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -179,6 +181,8 @@
                                     <td class='border border-5'>${response[i].code_mitem}</td>
                                     <td class='border border-5'>${response[i].name_mitem}</td>
                                     <td class='border border-5'>${thousands_separators(parseFloat(response[i].qty))}</td>
+                                    <td class='border border-5'>${thousands_separators(parseFloat(response[i].price))}</td>
+                                    <td class='border border-5'>${thousands_separators(parseFloat(response[i].subtotal))}</td>
                                     </tr>`;
                         $("#modaltable tbody").append(tablerow);
                     }
