@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\ReturPembelianController;
 use App\Http\Controllers\SjReturController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
@@ -33,3 +34,7 @@ Route::post('/getdetailitem', [PembelianController::class, 'getDetailItem'])->na
 Route::get('/sjretur', [SjReturController::class, 'index'])->name('sjretur');
 Route::post('/getdetailretur', [SjReturController::class, 'getDetailItem'])->name('getdetailretur');
 Route::get('/sjretur/update', [SjReturController::class, 'update'])->name('sjreturupdate');
+
+Route::get('/returpembelian', [ReturPembelianController::class, 'index'])->name('returpembelian');
+Route::get('/returpembelian/update', [ReturPembelianController::class, 'update'])->name('returpembelianupdate');
+Route::post('/getreturdetailitem', [ReturPembelianController::class, 'getDetailItem'])->name('getreturdetailitem');
