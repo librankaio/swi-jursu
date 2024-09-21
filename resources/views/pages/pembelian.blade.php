@@ -70,7 +70,7 @@
                                         <tr row_id="{{ $counter }}" id='row_{{ $counter }}' class='text-center'>
                                             <th style='readonly:true;' row_th="{{ $counter }}" class='border border-5'>{{ $counter}}</th>
                                             {{-- <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='nosjclass form-control' name='nosj_d[]' type='text' value='{{ $item->no }}'></td> --}}
-                                            <td class='border border-5'><a style="cursor: pointer;" onclick="showDetailModal()" id="anchor">{{ $item->no }}</a></td>
+                                            <td class='border border-5'><a style="cursor: pointer;" onclick="showDetailModal('{{ $item->no }}')" id="anchor">{{ $item->no }}</a></td>
                                             <td class='border border-5' hidden><input style='width:120px;' disabled form='thisform' class='hdnnoclass form-control' name='hdn_no_d[]' type='text' value='{{ $item->no }}'></td>
                                             <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='tanggalclass form-control' type='text' value='{{ date("Y-m-d", strtotime($item->tdate)) }}'></td>
                                             <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='tujuanclass form-control' type='text' value='{{ $item->name_msupp }}'></td>
@@ -147,10 +147,10 @@
 @stop
 @section('botscripts')
 <script type="text/javascript">
-    function showDetailModal(){
-        code = $("#anchor").text();
-        console.log(code);
-        getDetailData(code);
+    function showDetailModal(no){
+        // code = $("#anchor").text();
+        console.log(no);
+        getDetailData(no);
         $('#mymodal').modal({
             backdrop: 'static',
             keyboard: true, 
@@ -163,16 +163,16 @@
         $("#modaltable tbody").empty();
         // do something...
     });
-    function getDetailData(code){
+    function getDetailData(no){
         $.ajax({
             url: '{{ route('getdetailitem') }}', 
             method: 'post', 
-            data: {'code': code}, 
+            data: {'no': no}, 
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, 
             dataType: 'json', 
             success: function(response) {
-                $('#title_modal').html(code);
+                $('#title_modal').html(no);
                 console.log(response);
                     number_counter = Number($('#number_counter').val());
                     for (i=0; i < response.length; i++) {
@@ -188,7 +188,6 @@
                     }
             }
         }); 
-        console.log(code + " tolol");
     }
     $(document).ready(function() {
         //CSRF TOKEN

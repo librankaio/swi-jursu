@@ -73,12 +73,12 @@ class SjReturController extends Controller
     }
 
     public function  getDetailItem(Request $request){
-        $code = $request->code;
+        $no = $request->no;
 
-        if($code == ''){
-            $items = DB::select(DB::raw("select code_mitem, name_mitem, code_muom, qty from tret where tstatus = 1 and no = '$code'"));
+        if($no == ''){
+            $items = DB::select(DB::raw("select code_mitem, name_mitem, code_muom, qty from tret where tstatus = 1 and no = '$no'"));
         }else{
-            $items = DB::select(DB::raw("select code_mitem, name_mitem, code_muom, qty from tret where tstatus = 1 and no = '$code'"));
+            $items = DB::select(DB::raw("select code_mitem, name_mitem, code_muom, qty from tret where tstatus = 1 and no = '$no'"));
         }
         
         return json_encode($items);
