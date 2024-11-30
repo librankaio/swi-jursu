@@ -107,11 +107,11 @@
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
-                    Swifect Copyright &copy; 2023 <div class="bullet"></div>
+                    Swifect Copyright &copy; <script> document.write(new Date().getFullYear()) </script> <div class="bullet"></div>
                     <span>Developed by <a href="https://www.swifect.com/" target="_blank">PT Swifect Solusi Indonesia.</a></span>
                 </div>                
                 <div class="footer-right">
-                    v 01.0.0 BETA
+                    v 1.3.0 
                 </div>
             </footer>
         </div>

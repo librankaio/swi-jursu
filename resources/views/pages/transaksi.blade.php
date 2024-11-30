@@ -124,11 +124,6 @@
                                     <label>Nama Item</label>
                                     <input type="text" class="form-control" id="nama_item" disabled>
                                 </div>   
-                                <div class="form-group">
-                                    <a href="" id="addItem">
-                                        <i class="fa fa-plus" style="font-size:18pt"></i>
-                                    </a>
-                                </div>
                             </div>
                             <div class="col-md-6">    
                                 <div class="form-group">
@@ -139,36 +134,42 @@
                                     <label>Quantity Surat jalan</label>
                                     <input type="text" class="form-control" id="quantity_sj" value="0" readonly>
                                 </div>
+                                <div class="form-group">
+                                    <a href="" id="addItem">
+                                        <i class="fa fa-plus" style="font-size:18pt"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-12 col-md-12 col-lg-12">
                 <form action="/packlist/update" method="GET" id="thisform">
-                    <div class="custom-card-table">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row pb-3">
-                                    <div class="col-6"></div>
-                                    <div class="col-6 d-flex justify-content-end">
-                                        {{-- <button type="submit" formaction="rlaperoutletprint" formtarget="_blank" class="btn btn-success"><i
-                                            class="far fa-print"></i><span> Print</span></button> --}}
-                                            {{-- <a href="/tsuratjalan/{{ $item->id }}/print"
-                                                class="btn btn-icon icon-left btn-success" target="_blank"><i class="far fa-print">
-                                                    Print</i></a> --}}
-                                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row pb-3">
+                                <div class="col-6"></div>
+                                <div class="col-6 d-flex justify-content-end">
+                                    {{-- <button type="submit" formaction="rlaperoutletprint" formtarget="_blank" class="btn btn-success"><i
+                                        class="far fa-print"></i><span> Print</span></button> --}}
+                                        {{-- <a href="/tsuratjalan/{{ $item->id }}/print"
+                                            class="btn btn-icon icon-left btn-success" target="_blank"><i class="far fa-print">
+                                                Print</i></a> --}}
                                 </div>
-                                <br>
-                                {{-- <div class="table-responsive"> --}}
-                                    <div class="form-group">
-                                        {{-- <label>counter</label> --}}
-                                        <input type="text" class="form-control" id="number_counter" value="0" hidden readonly>
-                                    </div>
-                                    <table class="table table-bordered" id="datatable">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="border border-5" style="text-align: center;">No</th>
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                                <div class="form-group">
+                                    {{-- <label>counter</label> --}}
+                                    <input type="text" class="form-control" id="number_counter" value="0" hidden readonly>
+                                </div>
+                                <table class="table table-bordered" id="datatable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="border border-5" style="text-align: center;">No</th>
                                                 <th scope="col" class="border border-5" style="text-align: center;">No SJ</th>
                                                 <th scope="col" class="border border-5" style="text-align: center;">Tanggal SJ</th>
                                                 <th scope="col" class="border border-5" style="text-align: center;">Tujuan</th>
@@ -176,23 +177,22 @@
                                                 <th scope="col" class="border border-5" style="text-align: center;">Nama</th>
                                                 <th scope="col" class="border border-5" style="text-align: center;">Qty</th>
                                                 <th scope="col" class="border border-5" style="text-align: center;">Delete</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                        </tr>
+                                    </thead>   
+                                    <tbody>
                                             
-                                        </tbody>                            
-                                    </table>
-                                    <br>
-                                {{-- </div>                                               --}}
-                            </div>      
-                            <div class="card-footer text-right">
-                                <div class="row">
-                                    <div class="col-md-12 d-flex justify-content-end">                    
-                                        <div class="form-group">
-                                            <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">Approve</button>
-                                    <button class="btn btn-secondary" type="reset">Reset</button>
-                                        </div>                                
-                                    </div>
+                                    </tbody>                  
+                                </table>
+                                <br>
+                            </div>                                              
+                        </div>      
+                        <div class="card-footer text-right">
+                            <div class="row">
+                                <div class="col-md-12 d-flex justify-content-end">                    
+                                    <div class="form-group">
+                                        <button class="btn btn-primary mr-1" id="confirm" type="submit" onclick="show_loading()">Approve</button>
+                                {{-- <button class="btn btn-secondary" type="reset">Reset</button> --}}
+                                    </div>                                
                                 </div>
                             </div>
                         </div>
@@ -323,12 +323,12 @@
 
                     tablerow = `<tr row_id="${counter_row}" id='row_${counter_row}' class='text-center'>
                                 <th style='readonly:true;' row_th="${counter}" class='border border-5'>${counter}</th>
-                                <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='nosjclass form-control' name='nosj_d[]' type='text' value='${no_sj}'></td>
+                                <td class='border border-5'><input style='width:120px' readonly form='thisform' class='nosjclass form-control' name='nosj_d[]' type='text' value='${no_sj}'></td>
                                 <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='tanggalclass form-control' name='tanggal_d[]' type='text' value='${tanggal}'></td>
-                                <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='tujuanclass form-control' name='tujuan_d[]' type='text' value='${tujuan}'></td>
-                                <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='kodeclass form-control' name='kode_d[]' type='text' value='${kode}'></td>
-                                <td class='border border-5'><input style='width:100%;' readonly form='thisform' class='namaitemclass form-control' name='nama_item_d[]' type='text' value='${nama_item}'></td>
-                                <td class='border border-5'><input style='width:100px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='${quantity}'></td>
+                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='tujuanclass form-control' name='tujuan_d[]' type='text' value='${tujuan}'></td>
+                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='kodeclass form-control' name='kode_d[]' type='text' value='${kode}'></td>
+                                <td class='border border-5'><input style='width:120px' readonly form='thisform' class='namaitemclass form-control' name='nama_item_d[]' type='text' value='${nama_item}'></td>
+                                <td class='border border-5'><input style='width:50px;' readonly form='thisform' class='quantityclass form-control' name='quantity_d[]' type='text' value='${quantity}'></td>
                                 <td class='border border-5'><a title='Delete' class='delete'><i style='font-size:15pt;color:#6777ef;' class='fa fa-trash'></i></a></td>
                                 </tr>`;
 
