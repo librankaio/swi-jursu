@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\ReturPembelianController;
 use App\Http\Controllers\SjReturController;
@@ -16,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/', [LoginController::class, 'postLogin'])->name('postlogin');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/packlist', [TransaksiController::class, 'index'])->name('packlist');
 Route::get('/packlist/update', [TransaksiController::class, 'update'])->name('packlistupdate');
