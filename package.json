@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "bootstrap": "^5.3.3",
+        "bootstrap-datepicker": "^1.10.0",
         "datatables.net-bs4": "^2.0.5",
         "jquery": "^3.7.1",
         "prismjs": "^1.29.0",

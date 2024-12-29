@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\RdailyPaymentRecController;
 use App\Http\Controllers\ReturPembelianController;
 use App\Http\Controllers\SjReturController;
 use App\Http\Controllers\TransaksiController;
@@ -41,3 +42,6 @@ Route::get('/sjretur/update', [SjReturController::class, 'update'])->name('sjret
 Route::get('/returpembelian', [ReturPembelianController::class, 'index'])->name('returpembelian');
 Route::get('/returpembelian/update', [ReturPembelianController::class, 'update'])->name('returpembelianupdate');
 Route::post('/getreturdetailitem', [ReturPembelianController::class, 'getDetailItem'])->name('getreturdetailitem');
+
+// REPORTS
+Route::get('/rdailypaymentrcv', [RdailyPaymentRecController::class, 'index'])->name('rdailypaymentrcv');

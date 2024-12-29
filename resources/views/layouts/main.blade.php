@@ -138,6 +138,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.min.js"></script>
 
     {{-- Bottom Javascript --}}
+    <script type="text/javascript">
+        $(function(){
+            $('#dtfrom').datepicker({
+            format: 'dd/mm/yyyy'
+            });
+            $('#dtto').datepicker({
+            format: 'dd/mm/yyyy'
+            });
+        });
+    </script>
     @yield('botscripts')
     <script type="text/javascript">
         let fadeTarget = document.querySelector(".loading")

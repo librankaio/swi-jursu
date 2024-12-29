@@ -5,3 +5,4 @@ require("select2");
 require("sweetalert");
 require("datatables.net-bs4")
 require("prismjs");
+require("bootstrap-datepicker");
