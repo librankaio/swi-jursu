@@ -10,10 +10,10 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Daily Payment Received</h1>
+        <h1>Sales Summary</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Report</a></div>
-            <div class="breadcrumb-item"><a class="text-muted">Daily Payment Received</a></div>
+            <div class="breadcrumb-item"><a class="text-muted">Sales Summary</a></div>
         </div>
     </div>
     @php
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="row">
-            <form action="/rdailypaymentrcv" method="get" id="myform">
+            <form action="/rsalessummary" method="get" id="myform">
                 <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
                             <div class="card-body">
@@ -111,16 +111,16 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" class="border border-5" style="text-align: center;">No</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Day</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Date</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Cash</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Debit BCA</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Credit Non BCA</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Debit Non BCA</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">M-Banking</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Credit BCA</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Qris</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Total</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Outlet</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">No POS</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Tgl Transaksi</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">jam Buat</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Customer</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Modal</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Sales</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Tax</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Sales + Tax</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Payment State</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -131,7 +131,7 @@
                                             @foreach($results as $data => $item)
                                             @php $counter++ @endphp
                                             @php 
-                                            $total_perrow = $item->CASH + $item->DEBIT_BCA + $item->CC_NON_BCA + $item->DEBIT_NON_BCA + $item->mbanking + $item->CC_BCA + $item->QRIS 
+                                            $total_perrow = $item->grdtotal
                                             @endphp
                                             @if($grandtot == 0)
                                                 @php $grandtot = $grandtot + $total_perrow @endphp
@@ -140,16 +140,16 @@
                                             @endif
                                             <tr row_id="{{ $counter }}" id='row_{{ $counter }}' class='text-center'>
                                                 <th style='readonly:true;' row_th="{{ $counter }}" class='border border-5'>{{ $counter}}</th>
-                                                <td class='border border-5'>{{ $item->day }}</td>
+                                                <td class='border border-5'>{{ $item->name_mlokasi }}</td>
+                                                <td class='border border-5'>{{ $item->no }}</td>
                                                 <td class='border border-5'>{{ date("d/m/Y", strtotime($item->tdate)) }}</td>
-                                                <td class='border border-5'>{{ number_format($item->CASH, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->DEBIT_BCA, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->CC_NON_BCA, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->DEBIT_NON_BCA, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->mbanking, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->CC_BCA, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->QRIS, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($total_perrow, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>{{ $item->created }}</td>
+                                                <td class='border border-5'>{{ $item->name_mmbr }}</td>
+                                                <td class='border border-5'>{{ number_format($item->cost, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>{{ number_format($item->grdtotal, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>0</td>
+                                                <td class='border border-5'>{{ number_format($item->grdtotal, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>{{ $item->paymentstate }}</td>
                                             </tr>
                                             @endforeach
                                         @endisset
@@ -395,13 +395,13 @@
             });
         });
 
-        // $('#datatable').DataTable({
-        // // "ordering":false,
-        // "bInfo" : false,
-        // "pageLength": 50
-        // // "bPaginate": false,
-        // // "searching": false
-        // });
+        $('#datatable').DataTable({
+            "ordering":false,
+            "bInfo" : false,
+            "pageLength": 50
+            // "bPaginate": false,
+            // "searching": false
+        });
     })
 </script>
 @endsection

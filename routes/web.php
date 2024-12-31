@@ -4,6 +4,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\RdailyPaymentRecController;
 use App\Http\Controllers\ReturPembelianController;
+use App\Http\Controllers\RpaymentReceivedGroupController;
+use App\Http\Controllers\RsalesSummaryController;
 use App\Http\Controllers\SjReturController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
@@ -45,3 +47,5 @@ Route::post('/getreturdetailitem', [ReturPembelianController::class, 'getDetailI
 
 // REPORTS
 Route::get('/rdailypaymentrcv', [RdailyPaymentRecController::class, 'index'])->name('rdailypaymentrcv');
+Route::get('/rpaymentrcvgroup', [RpaymentReceivedGroupController::class, 'index'])->name('rpaymentrcvgroup');
+Route::get('/rsalessummary', [RsalesSummaryController::class, 'index'])->name('rsalessummary');

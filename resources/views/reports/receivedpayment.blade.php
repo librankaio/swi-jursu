@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="row">
-            <form action="/rdailypaymentrcv" method="get" id="myform">
+            <form action="/rpaymentrcvgroup" method="get" id="myform">
                 <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
                             <div class="card-body">
@@ -37,7 +37,7 @@
                                                 <label>Lokasi</label>
                                                 <select class="form-control select2" id="lokasi" name="lokasi" form="myform">
                                                     @if(request('lokasi') != NULL)
-                                                    <option selected disabled>{{ $_GET['lokasi']}}</option>
+                                                    <option selected disabled value="{{ $_GET['lokasi'] }}">{{ $_GET['hdn_lokasi'] }}</option>
                                                     @else
                                                     <option disabled selected>--Select Lokasi--</option>
                                                     @endif  
@@ -45,6 +45,9 @@
                                                     <option value="{{ $location->value }}">{{ $location->display }}</option>
                                                     @endforeach
                                                 </select>
+                                                <input type="text" class="form-control"
+                                                value="@php if(request('hdn_lokasi') != NULL){ echo $_GET['hdn_lokasi'];} @endphp"
+                                                id="hdn_lokasi" name="hdn_lokasi" style="display: none;">
                                             </div>   
                                         </div>
                                     </div>
@@ -111,16 +114,11 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" class="border border-5" style="text-align: center;">No</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Day</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Date</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Cash</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Debit BCA</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Credit Non BCA</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Debit Non BCA</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">M-Banking</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Credit BCA</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Qris</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Total</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Type</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Count</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Ammount</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">MDR</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">NETT</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -131,25 +129,21 @@
                                             @foreach($results as $data => $item)
                                             @php $counter++ @endphp
                                             @php 
-                                            $total_perrow = $item->CASH + $item->DEBIT_BCA + $item->CC_NON_BCA + $item->DEBIT_NON_BCA + $item->mbanking + $item->CC_BCA + $item->QRIS 
+                                            $total_amount = $item->count * $item->amount;
+                                            // $total_perrow = $item->CASH + $item->DEBIT_BCA + $item->CC_NON_BCA + $item->DEBIT_NON_BCA + $item->mbanking + $item->CC_BCA + $item->QRIS 
                                             @endphp
                                             @if($grandtot == 0)
-                                                @php $grandtot = $grandtot + $total_perrow @endphp
+                                                @php $grandtot = $grandtot + $total_amount @endphp
                                             @else
-                                                @php $grandtot = $grandtot + $total_perrow @endphp
+                                                @php $grandtot = $grandtot + $total_amount @endphp
                                             @endif
                                             <tr row_id="{{ $counter }}" id='row_{{ $counter }}' class='text-center'>
                                                 <th style='readonly:true;' row_th="{{ $counter }}" class='border border-5'>{{ $counter}}</th>
-                                                <td class='border border-5'>{{ $item->day }}</td>
-                                                <td class='border border-5'>{{ date("d/m/Y", strtotime($item->tdate)) }}</td>
-                                                <td class='border border-5'>{{ number_format($item->CASH, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->DEBIT_BCA, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->CC_NON_BCA, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->DEBIT_NON_BCA, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->mbanking, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->CC_BCA, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->QRIS, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($total_perrow, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>{{ $item->name }}</td>
+                                                <td class='border border-5'>{{ number_format($item->count, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>{{ number_format($item->amount, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>0</td>
+                                                <td class='border border-5'>{{ number_format($total_amount, 2, '.', ',') }}</td>
                                             </tr>
                                             @endforeach
                                         @endisset
@@ -395,12 +389,17 @@
             });
         });
 
+        $("#lokasi").on('select2:select', function(e) {
+            lokasi = $("#select2-lokasi-container").text();
+            console.log(lokasi);
+            $("#hdn_lokasi").val(lokasi);
+        });
         // $('#datatable').DataTable({
-        // // "ordering":false,
-        // "bInfo" : false,
-        // "pageLength": 50
-        // // "bPaginate": false,
-        // // "searching": false
+        //     "ordering":false,
+        //     "bInfo" : false,
+        //     "pageLength": 50
+        //     // "bPaginate": false,
+        //     // "searching": false
         // });
     })
 </script>
