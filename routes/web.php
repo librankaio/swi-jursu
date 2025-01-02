@@ -27,25 +27,28 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 //     return view('welcome');
 // });
 
-Route::get('/packlist', [TransaksiController::class, 'index'])->name('packlist');
-Route::get('/packlist/update', [TransaksiController::class, 'update'])->name('packlistupdate');
-Route::post('/getnosj', [TransaksiController::class, 'getNoSj'])->name('getnosj');
-Route::post('/getitem', [TransaksiController::class, 'getItem'])->name('getitem');
-Route::post('/getcodeitem', [TransaksiController::class, 'getCodeItem'])->name('getcodeitem');
+Route::group(['middleware' => ['auth']], function () {
+    
+    Route::get('/packlist', [TransaksiController::class, 'index'])->name('packlist');
+    Route::get('/packlist/update', [TransaksiController::class, 'update'])->name('packlistupdate');
+    Route::post('/getnosj', [TransaksiController::class, 'getNoSj'])->name('getnosj');
+    Route::post('/getitem', [TransaksiController::class, 'getItem'])->name('getitem');
+    Route::post('/getcodeitem', [TransaksiController::class, 'getCodeItem'])->name('getcodeitem');
 
-Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian');
-Route::get('/pembelian/update', [PembelianController::class, 'update'])->name('pembelianupdate');
-Route::post('/getdetailitem', [PembelianController::class, 'getDetailItem'])->name('getdetailitem');
+    Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian');
+    Route::get('/pembelian/update', [PembelianController::class, 'update'])->name('pembelianupdate');
+    Route::post('/getdetailitem', [PembelianController::class, 'getDetailItem'])->name('getdetailitem');
 
-Route::get('/sjretur', [SjReturController::class, 'index'])->name('sjretur');
-Route::post('/getdetailretur', [SjReturController::class, 'getDetailItem'])->name('getdetailretur');
-Route::get('/sjretur/update', [SjReturController::class, 'update'])->name('sjreturupdate');
+    Route::get('/sjretur', [SjReturController::class, 'index'])->name('sjretur');
+    Route::post('/getdetailretur', [SjReturController::class, 'getDetailItem'])->name('getdetailretur');
+    Route::get('/sjretur/update', [SjReturController::class, 'update'])->name('sjreturupdate');
 
-Route::get('/returpembelian', [ReturPembelianController::class, 'index'])->name('returpembelian');
-Route::get('/returpembelian/update', [ReturPembelianController::class, 'update'])->name('returpembelianupdate');
-Route::post('/getreturdetailitem', [ReturPembelianController::class, 'getDetailItem'])->name('getreturdetailitem');
+    Route::get('/returpembelian', [ReturPembelianController::class, 'index'])->name('returpembelian');
+    Route::get('/returpembelian/update', [ReturPembelianController::class, 'update'])->name('returpembelianupdate');
+    Route::post('/getreturdetailitem', [ReturPembelianController::class, 'getDetailItem'])->name('getreturdetailitem');
 
-// REPORTS
-Route::get('/rdailypaymentrcv', [RdailyPaymentRecController::class, 'index'])->name('rdailypaymentrcv');
-Route::get('/rpaymentrcvgroup', [RpaymentReceivedGroupController::class, 'index'])->name('rpaymentrcvgroup');
-Route::get('/rsalessummary', [RsalesSummaryController::class, 'index'])->name('rsalessummary');
+    // REPORTS
+    Route::get('/rdailypaymentrcv', [RdailyPaymentRecController::class, 'index'])->name('rdailypaymentrcv');
+    Route::get('/rpaymentrcvgroup', [RpaymentReceivedGroupController::class, 'index'])->name('rpaymentrcvgroup');
+    Route::get('/rsalessummary', [RsalesSummaryController::class, 'index'])->name('rsalessummary');
+});

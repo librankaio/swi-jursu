@@ -7,12 +7,16 @@
             <li><a class="nav-link" href="{{ route('produk') }}">Produk</a></li>  
             <li><a class="nav-link" href="{{ route('penjualan') }}">Penjualan</a></li>  
         </ul> --}}
-        <li><a class="nav-link" href="{{ route('packlist') }}"><i class="fas fa-cubes"></i> <span>Packing List</span></a></li>
-        <li><a class="nav-link" href="{{ route('rdailypaymentrcv') }}"><i class="fas fa-cubes"></i> <span>Daily Payment Received</span></a></li>
-        <li><a class="nav-link" href="{{ route('rpaymentrcvgroup') }}"><i class="fas fa-cubes"></i> <span>Payment Received By Group</span></a></li>
-        <li><a class="nav-link" href="{{ route('rsalessummary') }}"><i class="fas fa-cubes"></i> <span>Sales Summary</span></a></li>
-        <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Inventory by Category</span></a></li>
-        <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Product by Outlet</span></a></li>
+        @if(session('username') == 'admin')    
+            <li><a class="nav-link" href="{{ route('packlist') }}"><i class="fas fa-cubes"></i> <span>Packing List</span></a></li>
+            <li><a class="nav-link" href="{{ route('rdailypaymentrcv') }}"><i class="fas fa-cubes"></i> <span>Daily Payment Received</span></a></li>
+            <li><a class="nav-link" href="{{ route('rpaymentrcvgroup') }}"><i class="fas fa-cubes"></i> <span>Payment Received By Group</span></a></li>
+            <li><a class="nav-link" href="{{ route('rsalessummary') }}"><i class="fas fa-cubes"></i> <span>Sales Summary</span></a></li>
+            <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Inventory by Category</span></a></li>
+            <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Product by Outlet</span></a></li>
+        @else
+            <li><a class="nav-link" href="{{ route('packlist') }}"><i class="fas fa-cubes"></i> <span>Packing List</span></a></li>
+        @endif
         {{-- <li><a class="nav-link" href="{{ route('pembelian') }}"><i class="fas fa-cubes"></i> <span>Pembelian</span></a></li>
         <li><a class="nav-link" href="{{ route('sjretur') }}"><i class="fas fa-cubes"></i> <span>Surat Jalan Retur</span></a></li>
         <li><a class="nav-link" href="{{ route('returpembelian') }}"><i class="fas fa-cubes"></i> <span>Retur Pembelian</span></a></li> --}}
