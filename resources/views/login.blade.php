@@ -62,9 +62,9 @@
                                     document.write(new Date().getFullYear());
                                 </script> ©</a>
                             </div>
-                            <div class="login-form pt-2">
+                            {{-- <div class="login-form pt-2">
                                 Go to Swifect Repository page click <a href="https://repository.swiapps.com/" target="_blank">Here</a>
-                            </div>
+                            </div> --}}
                         </div>
                         </div>
                     </div>                    
