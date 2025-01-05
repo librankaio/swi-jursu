@@ -4,7 +4,7 @@
         {{-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-cubes"></i><span>Main Menu</span></a>
         <ul class="dropdown-menu">
             <li><a class="nav-link" href="{{ route('customer') }}">Data Customer</a></li>       
-            <li><a class="nav-link" href="{{ route('produk') }}">Produk</a></li>  
+            <li><a class="nav-link" href="{{ route('produk') }}">Plroduk</a></li>  
             <li><a class="nav-link" href="{{ route('penjualan') }}">Penjualan</a></li>  
         </ul> --}}
         @if(session('username') == 'admin')    
