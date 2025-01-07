@@ -42,7 +42,7 @@
                                                     <option disabled selected>--Select Category--</option>
                                                     @endif  
                                                     @foreach($categories as $category)
-                                                    <option value="{{ $category->value }}">{{ $category->display }}</option>
+                                                    <option value="{{ $category->display }}">{{ $category->display }}</option>
                                                     @endforeach
                                                 </select>
                                                 <input type="text" class="form-control"
@@ -186,6 +186,11 @@
 @section('botscripts')
 <script type="text/javascript">
     $(document).ready(function() {
+        $("#category").on('select2:select', function(e) {
+            category = $("#select2-category-container").text();
+            console.log(category);
+            $("#hdn_category").val(category);
+        });
         $('#datatable').DataTable({
             "ordering":false,
             "bInfo" : false,
