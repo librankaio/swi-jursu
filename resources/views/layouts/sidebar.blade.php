@@ -12,7 +12,7 @@
             <li><a class="nav-link" href="{{ route('rdailypaymentrcv') }}"><i class="fas fa-cubes"></i> <span>Daily Payment Received</span></a></li>
             <li><a class="nav-link" href="{{ route('rpaymentrcvgroup') }}"><i class="fas fa-cubes"></i> <span>Payment Received By Group</span></a></li>
             <li><a class="nav-link" href="{{ route('rsalessummary') }}"><i class="fas fa-cubes"></i> <span>Sales Summary</span></a></li>
-            <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Inventory by Category</span></a></li>
+            <li><a class="nav-link" href="{{ route('inventcategory') }}"><i class="fas fa-cubes"></i> <span>Inventory by Category</span></a></li>
             <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Product by Outlet</span></a></li>
         @else
             <li><a class="nav-link" href="{{ route('packlist') }}"><i class="fas fa-cubes"></i> <span>Packing List</span></a></li>
