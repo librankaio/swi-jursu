@@ -10,10 +10,10 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Daily Payment Received By Group</h1>
+        <h1>Inventory By Category</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Report</a></div>
-            <div class="breadcrumb-item"><a class="text-muted">Daily Payment Received By Group</a></div>
+            <div class="breadcrumb-item"><a class="text-muted">Inventory By Category</a></div>
         </div>
     </div>
     @php
