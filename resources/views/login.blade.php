@@ -21,7 +21,7 @@
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <img src="/img/logo-swifect-logo.png" alt=""></img>
+                        <img src="/img/logo-jursu.png" alt=""></img>
                         {{-- <h1 style="font-weight: bold; color: #2B58AF">IT INVENTORY ONLINE</h1> --}}
                     </div>
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">

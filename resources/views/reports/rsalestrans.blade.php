@@ -119,7 +119,7 @@
                                             <th scope="col" class="border border-5" style="text-align: center;">Member</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Tanggal</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Waktu</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Category</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Cabang</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Nama</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Kode</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Qty</th>
