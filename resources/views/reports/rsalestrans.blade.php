@@ -34,12 +34,12 @@
                                     <div class="col-12">
                                         <div class="mb-3">
                                             <div class="form-group">
-                                                <label>Category</label>
+                                                <label>Lokasi</label>
                                                 <select class="form-control select2" id="category" name="category" form="myform">
                                                     @if(request('category') != NULL)
                                                     <option selected disabled value="{{ $_GET['category'] }}">{{ $_GET['hdn_category'] }}</option>
                                                     @else
-                                                    <option disabled selected>--Select Category--</option>
+                                                    <option disabled selected>--Select Lokasi--</option>
                                                     @endif  
                                                     @foreach($categories as $category)
                                                     <option value="{{ $category->value }}">{{ $category->display }}</option>
