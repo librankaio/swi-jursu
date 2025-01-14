@@ -17,9 +17,27 @@ class RpaymentReceivedGroupController extends Controller
             $datefrForm = Carbon::createFromFormat('d/m/Y', $dtfr)->format('Y-m-d');
             $datetoForm = Carbon::createFromFormat('d/m/Y', $dtto)->format('Y-m-d');
             
-            $results = DB::select(DB::raw("Select name, dbo.fgetcountpayOUTLET(code,'$datefrForm', '$datetoForm', '$request->lokasi') 'count', dbo.fgetsumpayOUTLET(code,'$datefrForm', '$datetoForm', '$request->lokasi') 'amount' FROM mpay WHERE tstatus = 1"));
-            
+            // if($request->lokasi != null) {
+            //     if($request->lokasi == 'SEMUA'){
+            //         $results = DB::select(DB::raw("EXEC vroutletpayment '$datefrForm', '$datetoForm', '$request->lokasi'"));
+
+            //         $locations = DB::select(DB::raw("SELECT 'SEMUA' AS 'value', 'SEMUA' AS 'display' UNION ALL SELECT code AS 'value', name AS 'display' FROM mwhse WHERE tstatus = 1"));
+
+            //         return view('reports.receivedpayment',[
+            //             'locations' => $locations,
+            //             'results' => $results,
+            //         ]);
+            //     }else{
+
+            //     }
+            // }
+            // $results = DB::select(DB::raw("Select name, dbo.fgetcountpayOUTLET(code,'$datefrForm', '$datetoForm', '$request->lokasi') 'count', dbo.fgetsumpayOUTLET(code,'$datefrForm', '$datetoForm', '$request->lokasi') 'amount' FROM mpay WHERE tstatus = 1"));
+
+            $results = DB::select(DB::raw("EXEC vroutletpayment '$datefrForm', '$datetoForm', '$request->lokasi'"));
+
             $locations = DB::select(DB::raw("SELECT 'SEMUA' AS 'value', 'SEMUA' AS 'display' UNION ALL SELECT code AS 'value', name AS 'display' FROM mwhse WHERE tstatus = 1"));
+
+            // dd($results);
 
             return view('reports.receivedpayment',[
                 'locations' => $locations,

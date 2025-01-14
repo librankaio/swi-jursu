@@ -35,6 +35,20 @@
                                         <div class="mb-3">
                                             <div class="form-group">
                                                 <label>Lokasi</label>
+                                                <select class="form-control select2" id="category" name="category" form="myform">
+                                                    @if(request('category') != NULL)
+                                                    <option selected disabled value="{{ $_GET['category'] }}">{{ $_GET['hdn_category'] }}</option>
+                                                    @else
+                                                    <option disabled selected>--Select Lokasi--</option>
+                                                    @endif  
+                                                    @foreach($categories as $category)
+                                                    <option value="{{ $category->value }}">{{ $category->display }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <input type="text" class="form-control"
+                                                value="@php if(request('hdn_category') != NULL){ echo $_GET['hdn_category'];} @endphp"
+                                                id="hdn_category" name="hdn_category" style="display: none;">
+                                                {{-- <label>Lokasi</label>
                                                 <select class="form-control select2" id="lokasi" name="lokasi" form="myform">
                                                     @if(request('lokasi') != NULL)
                                                     <option selected disabled>{{ $_GET['lokasi']}}</option>
@@ -44,7 +58,7 @@
                                                     @foreach($locations as $location)
                                                     <option value="{{ $location->value }}">{{ $location->display }}</option>
                                                     @endforeach
-                                                </select>
+                                                </select> --}}
                                             </div>   
                                         </div>
                                     </div>

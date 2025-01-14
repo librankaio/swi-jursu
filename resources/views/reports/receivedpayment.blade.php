@@ -113,12 +113,21 @@
                                 <table class="table table-bordered" id="datatable">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="border border-5" style="text-align: center;">No</th>
+                                            {{-- <th scope="col" class="border border-5" style="text-align: center;">No</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Type</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Count</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Ammount</th>
                                             <th scope="col" class="border border-5" style="text-align: center;">MDR</th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">NETT</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">NETT</th> --}}
+                                            <th scope="col" class="border border-5" style="text-align: center;">No</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Nama</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Cash</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Debit BCA</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Credit Non BCA</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Debit Non BCA</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">m-Banking</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Credit BCA</th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Qris</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -129,21 +138,24 @@
                                             @foreach($results as $data => $item)
                                             @php $counter++ @endphp
                                             @php 
-                                            $total_amount = $item->count * $item->amount;
+                                            // $total_amount = $item->count * $item->amount;
                                             // $total_perrow = $item->CASH + $item->DEBIT_BCA + $item->CC_NON_BCA + $item->DEBIT_NON_BCA + $item->mbanking + $item->CC_BCA + $item->QRIS 
                                             @endphp
-                                            @if($grandtot == 0)
+                                            {{-- @if($grandtot == 0)
                                                 @php $grandtot = $grandtot + $total_amount @endphp
                                             @else
                                                 @php $grandtot = $grandtot + $total_amount @endphp
-                                            @endif
+                                            @endif --}}
                                             <tr row_id="{{ $counter }}" id='row_{{ $counter }}' class='text-center'>
                                                 <th style='readonly:true;' row_th="{{ $counter }}" class='border border-5'>{{ $counter}}</th>
                                                 <td class='border border-5'>{{ $item->name }}</td>
-                                                <td class='border border-5'>{{ number_format($item->count, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>{{ number_format($item->amount, 2, '.', ',') }}</td>
-                                                <td class='border border-5'>0</td>
-                                                <td class='border border-5'>{{ number_format($total_amount, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>{{ number_format($item->CASH, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>{{ number_format($item->{'DEBIT BCA'}, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>{{ number_format($item->{'CREDIT NON BCA'}, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>{{ number_format($item->{'DEBIT NON BCA'}, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>{{ number_format($item->{'m-Banking'}, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>{{ number_format($item->{'CREDIT BCA'}, 2, '.', ',') }}</td>
+                                                <td class='border border-5'>{{ number_format($item->{'QRIS'}, 2, '.', ',') }}</td>
                                             </tr>
                                             @endforeach
                                         @endisset
@@ -160,7 +172,7 @@
                                     <div class="form-group">
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Grand Total</label>
-                                            <input type="text" class="form-control" value="{{ number_format($grandtot, 2, '.', ',') }}" readonly>
+                                            {{-- <input type="text" class="form-control" value="{{ number_format($grandtot, 2, '.', ',') }}" readonly> --}}
                                         </div>
                                     </div>                                
                                 </div>
