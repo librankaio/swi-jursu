@@ -17,9 +17,10 @@ class RsalesSummaryController extends Controller
             $datetoForm = Carbon::createFromFormat('d/m/Y', $dtto)->format('Y-m-d');
             
             if($request->lokasi != null) {
+                // dd("Masuk");
                 if($request->lokasi == 'SEMUA'){
                     $results = DB::select(DB::raw("select code_mlokasi, name_mlokasi, no, tdate, CONVERT(VARCHAR(5), createddate, 108) 'created', name_mmbr, sum(qty*isnull(hpp,0)) 'cost', grdtotal, 'Paid' as 'paymentstate' from tpos WHERE tdate BETWEEN '$datefrForm' AND '$datetoForm' GROUP BY code_mlokasi, name_mlokasi, no, tdate, CONVERT(VARCHAR(5), createddate, 108), name_mmbr, grdtotal"));
-
+                    // dd($results);
                     $locations = DB::select(DB::raw("SELECT 'SEMUA' AS 'value', 'SEMUA' AS 'display' UNION ALL SELECT code AS 'value', name AS 'display' FROM mwhse WHERE tstatus = 1"));
     
                     return view('reports.salessummary',[

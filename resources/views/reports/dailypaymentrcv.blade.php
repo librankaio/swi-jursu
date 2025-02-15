@@ -35,11 +35,11 @@
                                         <div class="mb-3">
                                             <div class="form-group">
                                                 <label>Lokasi</label>
-                                                <select class="form-control select2" id="category" name="category"
+                                                <select class="form-control select2" id="lokasi" name="lokasi"
                                                     form="myform">
-                                                    @if (request('category') != null)
-                                                        <option selected disabled value="{{ $_GET['category'] }}">
-                                                            {{ $_GET['hdn_category'] }}</option>
+                                                    @if (request('lokasi') != null)
+                                                        <option selected disabled value="{{ $_GET['lokasi'] }}">
+                                                            {{ $_GET['hdn_lokasi'] }}</option>
                                                     @else
                                                         <option disabled selected>--Select Lokasi--</option>
                                                     @endif
@@ -49,8 +49,8 @@
                                                     @endforeach
                                                 </select>
                                                 <input type="text" class="form-control"
-                                                    value="@php if(request('hdn_category') != NULL){ echo $_GET['hdn_category'];} @endphp"
-                                                    id="hdn_category" name="hdn_category" style="display: none;">
+                                                    value="@php if(request('hdn_lokasi') != NULL){ echo $_GET['hdn_lokasi'];} @endphp"
+                                                    id="hdn_lokasi" name="hdn_lokasi" style="display: none;">
                                                 {{-- <label>Lokasi</label>
                                                 <select class="form-control select2" id="lokasi" name="lokasi" form="myform">
                                                     @if (request('lokasi') != null)
@@ -447,6 +447,11 @@
                         this.value = this.value.replace(/\D/g, '');
                     }
                 });
+            });
+            $("#lokasi").on('select2:select', function(e) {
+                lokasi = $("#select2-lokasi-container").text();
+                console.log(lokasi);
+                $("#hdn_lokasi").val(lokasi);
             });
 
             // $('#datatable').DataTable({
