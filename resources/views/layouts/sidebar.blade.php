@@ -7,21 +7,30 @@
             <li><a class="nav-link" href="{{ route('produk') }}">Plroduk</a></li>  
             <li><a class="nav-link" href="{{ route('penjualan') }}">Penjualan</a></li>  
         </ul> --}}
-        @if(session('username') == 'admin')    
-            <li><a class="nav-link" href="{{ route('packlist') }}"><i class="fas fa-cubes"></i> <span>Packing List</span></a></li>
-            <li><a class="nav-link" href="{{ route('rdailypaymentrcv') }}"><i class="fas fa-cubes"></i> <span>Daily Payment Received</span></a></li>
-            <li><a class="nav-link" href="{{ route('rpaymentrcvgroup') }}"><i class="fas fa-cubes"></i> <span>Payment Received By Group</span></a></li>
-            <li><a class="nav-link" href="{{ route('rsalessummary') }}"><i class="fas fa-cubes"></i> <span>Sales Summary</span></a></li>
-            <li><a class="nav-link" href="{{ route('salestrans') }}"><i class="fas fa-cubes"></i> <span>Sales Transaction</span></a></li>
-            <li><a class="nav-link" href="{{ route('inventcategory') }}"><i class="fas fa-cubes"></i> <span>Inventory by Category</span></a></li>
-            <li><a class="nav-link" href="{{ route('productbyoutlet') }}"><i class="fas fa-cubes"></i> <span>Product by Outlet</span></a></li>
-        @else
-            <li><a class="nav-link" href="{{ route('packlist') }}"><i class="fas fa-cubes"></i> <span>Packing List</span></a></li>
-        @endif
-        {{-- <li><a class="nav-link" href="{{ route('pembelian') }}"><i class="fas fa-cubes"></i> <span>Pembelian</span></a></li>
+        @if (session('username') == 'admin')
+    <li><a class="nav-link" href="{{ route('packlist') }}"><i class="fas fa-cubes"></i> <span>Packing List</span></a></li>
+    <li><a class="nav-link" href="{{ route('rdailypaymentrcv') }}"><i class="fas fa-cubes"></i> <span>Daily Payment
+                Received</span></a></li>
+    <li><a class="nav-link" href="{{ route('rpaymentrcvgroup') }}"><i class="fas fa-cubes"></i> <span>Payment Received By
+                Group</span></a></li>
+    <li><a class="nav-link" href="{{ route('rsalessummary') }}"><i class="fas fa-cubes"></i> <span>Sales
+                Summary</span></a></li>
+    <li><a class="nav-link" href="{{ route('salestrans') }}"><i class="fas fa-cubes"></i> <span>Sales
+                Transaction</span></a></li>
+    <li><a class="nav-link" href="{{ route('inventcategory') }}"><i class="fas fa-cubes"></i> <span>Inventory by
+                Category</span></a></li>
+    <li><a class="nav-link" href="{{ route('productbyoutlet') }}"><i class="fas fa-cubes"></i> <span>Product by
+                Outlet</span></a></li>
+    <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Sales Compare by Outlet</span></a></li>
+    <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Outlet Performance Detail</span></a></li>
+@else
+    <li><a class="nav-link" href="{{ route('packlist') }}"><i class="fas fa-cubes"></i> <span>Packing List</span></a>
+    </li>
+    @endif
+    {{-- <li><a class="nav-link" href="{{ route('pembelian') }}"><i class="fas fa-cubes"></i> <span>Pembelian</span></a></li>
         <li><a class="nav-link" href="{{ route('sjretur') }}"><i class="fas fa-cubes"></i> <span>Surat Jalan Retur</span></a></li>
         <li><a class="nav-link" href="{{ route('returpembelian') }}"><i class="fas fa-cubes"></i> <span>Retur Pembelian</span></a></li> --}}
-        {{-- <li><a class="nav-link" href="{{ route('produk') }}"><i class="fas fa-cubes"></i> <span>Produk</span></a></li>
+    {{-- <li><a class="nav-link" href="{{ route('produk') }}"><i class="fas fa-cubes"></i> <span>Produk</span></a></li>
         <li><a class="nav-link" href="{{ route('stock') }}"><i class="fas fa-cubes"></i> <span>Tambah Stock</span></a></li>
         <li><a class="nav-link" href="{{ route('penjualan') }}"><i class="fas fa-cubes"></i> <span>Penjualan</span></a></li>
         <li><a class="nav-link" href="{{ route('lapstock') }}"><i class="fas fa-cubes"></i> <span>Laporan Stock</span></a></li>
