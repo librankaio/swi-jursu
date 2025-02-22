@@ -21,8 +21,10 @@
                 Category</span></a></li>
     <li><a class="nav-link" href="{{ route('productbyoutlet') }}"><i class="fas fa-cubes"></i> <span>Product by
                 Outlet</span></a></li>
-    <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Sales Compare by Outlet</span></a></li>
-    <li><a class="nav-link" href="#"><i class="fas fa-cubes"></i> <span>Outlet Performance Detail</span></a></li>
+    <li><a class="nav-link" href="{{ route('salescompare') }}"><i class="fas fa-cubes"></i> <span>Sales Compare by
+                Outlet</span></a></li>
+    <li><a class="nav-link" href="{{ route('outletperformance') }}"><i class="fas fa-cubes"></i> <span>Outlet
+                Performance Detail</span></a></li>
 @else
     <li><a class="nav-link" href="{{ route('packlist') }}"><i class="fas fa-cubes"></i> <span>Packing List</span></a>
     </li>
