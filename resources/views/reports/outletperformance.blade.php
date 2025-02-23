@@ -106,6 +106,9 @@
                                             </th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Profit
                                             </th>
+                                            <th scope="col" class="border border-5" style="text-align: center;">Grand
+                                                Total
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -136,9 +139,11 @@
                                                         class='border border-5'>{{ $counter }}</th>
                                                     <td class='border border-5'>{{ $item->name }}</td>
                                                     <td class='border border-5'>{{ $item->trans }}</td>
-                                                    <td class='border border-5'>{{ $item->sales }}</td>
+                                                    <td class='border border-5'>{{ number_format($item->sales, 2, '.', ',') }}
+                                                    </td>
                                                     <td class='border border-5'>0</td>
-                                                    <td class='border border-5'>{{ $item->sales }}</td>
+                                                    <td class='border border-5'>{{ {{ number_format($item->sales, 2, '.', ',') }} }}</td>
+                                                    <td class='border border-5'>{{ $item->sales + $item->trans }}</td>
                                                 </tr>
                                             @endforeach
                                         @endisset

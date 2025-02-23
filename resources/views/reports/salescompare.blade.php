@@ -130,13 +130,19 @@
                                             <th scope="col" class="border border-5" style="text-align: center;">Kolom
                                                 Outlet
                                             </th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Sales1
+                                            <th scope="col" class="border border-5" style="text-align: center;">Sales
+                                                [Tanggal dari] - [Sampai tanggal]
                                             </th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Sales2
+                                            <th scope="col" class="border border-5" style="text-align: center;">Profit
+                                                [Tanggal dari] - [Sampai tanggal]
                                             </th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Sales3
+                                            <th scope="col" class="border border-5" style="text-align: center;">Sales
+                                                [Tanggal Dari(Compare)] - [Sampai
+                                                Tanggal(Compare)]
                                             </th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">Sales4
+                                            <th scope="col" class="border border-5" style="text-align: center;">Profit
+                                                [Tanggal Dari(Compare)] - [Sampai
+                                                Tanggal(Compare)]
                                             </th>
                                             <th scope="col" class="border border-5" style="text-align: center;">YOY1
                                             </th>
