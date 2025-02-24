@@ -131,18 +131,16 @@
                                                 Outlet
                                             </th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Sales
-                                                [Tanggal dari] - [Sampai tanggal]
+                                                {{ request('dtfrom') }} - {{ request('dtto') }}
                                             </th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Profit
-                                                [Tanggal dari] - [Sampai tanggal]
+                                                {{ request('dtfrom') }} - {{ request('dtto') }}
                                             </th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Sales
-                                                [Tanggal Dari(Compare)] - [Sampai
-                                                Tanggal(Compare)]
+                                                {{ request('dtfromcpr') }} - {{ request('dttocpr') }}
                                             </th>
                                             <th scope="col" class="border border-5" style="text-align: center;">Profit
-                                                [Tanggal Dari(Compare)] - [Sampai
-                                                Tanggal(Compare)]
+                                                {{ request('dtfromcpr') }} - {{ request('dttocpr') }}
                                             </th>
                                             <th scope="col" class="border border-5" style="text-align: center;">YOY1
                                             </th>
