@@ -160,10 +160,14 @@
                                                     <th style='readonly:true;' row_th="{{ $counter }}"
                                                         class='border border-5'>{{ $counter }}</th>
                                                     <td class='border border-5'>{{ $item->name }}</td>
-                                                    <td class='border border-5'>{{ $item->sales1 }}</td>
-                                                    <td class='border border-5'>{{ $item->sales1 - $item->modal }}</td>
-                                                    <td class='border border-5'>{{ $item->sales2 }}</td>
-                                                    <td class='border border-5'>{{ $item->sales2 - $item->modal2 }}</td>
+                                                    <td class='border border-5'>
+                                                        {{ number_format($item->sales1, 2, '.', ',') }}</td>
+                                                    <td class='border border-5'>
+                                                        {{ number_format($item->sales1 - $item->modal, 2, '.', ',') }}</td>
+                                                    <td class='border border-5'>
+                                                        {{ number_format($item->sales2, 2, '.', ',') }}</td>
+                                                    <td class='border border-5'>
+                                                        {{ number_format($item->sales2 - $item->modal2, 2, '.', ',') }}</td>
                                                     @if ($item->sales2 == 0 || $item->modal2 == 0)
                                                         <td class='border border-5'>0</td>
                                                     @else
@@ -173,7 +177,8 @@
                                                                     1) *
                                                                 100;
                                                         @endphp
-                                                        <td class='border border-5'>{{ $yoy1 }}</td>
+                                                        <td class='border border-5'>{{ number_format($yoy1, 2, '.', ',') }}
+                                                        </td>
                                                     @endif
                                                     @if ($item->sales1 == 0 || $item->modal == 0 || $item->sales2 == 0 || $item->modal2 == 0)
                                                         <td class='border border-5'>0</td>
@@ -186,7 +191,8 @@
                                                                     1) *
                                                                 100;
                                                         @endphp
-                                                        <td class='border border-5'>{{ $yoy2 }}</td>
+                                                        <td class='border border-5'>{{ number_format($yoy2, 2, '.', ',') }}
+                                                        </td>
                                                     @endif
                                                 </tr>
                                             @endforeach

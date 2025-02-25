@@ -144,7 +144,8 @@
                                                     <td class='border border-5'>0</td>
                                                     <td class='border border-5'>{{ number_format($item->sales, 2, '.', ',') }}
                                                     </td>
-                                                    <td class='border border-5'>{{ $item->sales + $item->trans }}</td>
+                                                    <td class='border border-5'>
+                                                        {{ number_format($item->sales + $item->trans, 2, '.', ',') }}</td>
                                                 </tr>
                                             @endforeach
                                         @endisset
