@@ -173,7 +173,8 @@
                                                     @else
                                                         @php
                                                             $yoy1 =
-                                                                (floatval($item->sales2) / floatval($item->modal2) -
+                                                                (floatval($item->sales1) /
+                                                                    floatval($item->sales1 - $item->modal) -
                                                                     1) *
                                                                 100;
                                                         @endphp
@@ -185,9 +186,8 @@
                                                     @else
                                                         @php
                                                             $yoy2 =
-                                                                ((floatval($item->sales2) - floatval($item->modal2))(
-                                                                    floatval($item->sales1) - floatval($item->modal),
-                                                                ) -
+                                                                (floatval($item->sales2) /
+                                                                    floatval($item->sales2 - $item->modal2) -
                                                                     1) *
                                                                 100;
                                                         @endphp
