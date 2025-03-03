@@ -2,19 +2,17 @@
 <html lang="en">
 
 <head>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    {{-- <link rel="apple-touch-icon" sizes="180x180" href="/public/img/favico/favicon.ico"> --}}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('../assets/img/favico/favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('../assets/img/favico/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('../assets/img/favico/favicon-16x16.png') }}">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>PACKING LIST</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- Bootstrap icon --}}
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
     {{-- End Bootstrap icon --}}
 
     {{-- Fontawesome --}}
@@ -28,7 +26,7 @@
     {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.css" rel="stylesheet">
-    
+
     {{-- Loading CSS --}}
     <link href="/css/loading.css" rel="stylesheet">
     {{-- ENd Loading CSS --}}
@@ -52,14 +50,14 @@
 <body onload="hide_loading()" class="sidebar-mini">
     <div class="loading overlay">
         <div class="lds-roller">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </div>
     <div id="app">
@@ -107,11 +105,16 @@
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
-                    Swifect Copyright &copy; <script> document.write(new Date().getFullYear()) </script> <div class="bullet"></div>
-                    <span>Developed by <a href="https://www.swifect.com/" target="_blank">PT Swifect Solusi Indonesia.</a></span>
-                </div>                
+                    Swifect Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                    <div class="bullet"></div>
+                    <span>Developed by <a href="https://www.swifect.com/" target="_blank">PT Swifect Solusi
+                            Indonesia.</a></span>
+                </div>
                 <div class="footer-right">
-                    v 1.3.0 
+                    v 1.3.0
                 </div>
             </footer>
         </div>
@@ -125,7 +128,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    
+
     {{-- <script src="../assets/js/stisla.js"></script> --}}
     <script src="{{ asset('../assets/js/stisla.js') }}"></script>
     <script src="{{ asset('../assets/js/moneyformat.js') }}"></script>
@@ -134,34 +137,36 @@
     @yield('pluginjs')
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}"></script>    
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.min.js"></script>
 
     {{-- Bottom Javascript --}}
     <script type="text/javascript">
-        $(function(){
+        $(function() {
             $('#dtfrom').datepicker({
-            format: 'dd/mm/yyyy'
+                format: 'dd/mm/yyyy'
             });
             $('#dtto').datepicker({
-            format: 'dd/mm/yyyy'
+                format: 'dd/mm/yyyy'
             });
         });
     </script>
     @yield('botscripts')
     <script type="text/javascript">
         let fadeTarget = document.querySelector(".loading")
-        function show_loading(){
+
+        function show_loading() {
             fadeTarget.style.display = "block";
             fadeTarget.style.opacity = 1;
         }
-        function hide_loading(){
+
+        function hide_loading() {
             // fadeTarget.style.display = "none";
             var fadeEffect = setInterval(() => {
-                if (!fadeTarget.style.opacity){
+                if (!fadeTarget.style.opacity) {
                     fadeTarget.style.opacity = 1;
                 }
-                if (fadeTarget.style.opacity > 0){
+                if (fadeTarget.style.opacity > 0) {
                     fadeTarget.style.opacity -= 1;
                 } else {
                     clearInterval(fadeEffect);

@@ -142,9 +142,11 @@
                                             <th scope="col" class="border border-5" style="text-align: center;">Profit
                                                 {{ request('dtfromcpr') }} - {{ request('dttocpr') }}
                                             </th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">YOY1
+                                            <th scope="col" class="border border-5" style="text-align: center;">YOY
+                                                Growth | Revenue %
                                             </th>
-                                            <th scope="col" class="border border-5" style="text-align: center;">YOY2
+                                            <th scope="col" class="border border-5" style="text-align: center;">YOY
+                                                Growth | Profit %
                                             </th>
                                         </tr>
                                     </thead>
