@@ -168,26 +168,25 @@
                                                         {{ number_format($item->sales2, 2, '.', ',') }}</td>
                                                     <td class='border border-5'>
                                                         {{ number_format($item->sales2 - $item->modal2, 2, '.', ',') }}</td>
-                                                    @if ($item->sales2 == 0 || $item->modal2 == 0)
+                                                    @if ($item->sales1 == 0 || $item->sales2 == 0)
                                                         <td class='border border-5'>0</td>
                                                     @else
                                                         @php
                                                             $yoy1 =
-                                                                (floatval($item->sales1) /
-                                                                    floatval($item->sales1 - $item->modal) -
+                                                                (floatval($item->sales2) / floatval($item->sales1) -
                                                                     1) *
                                                                 100;
                                                         @endphp
                                                         <td class='border border-5'>{{ number_format($yoy1, 2, '.', ',') }}
                                                         </td>
                                                     @endif
-                                                    @if ($item->sales1 == 0 || $item->modal == 0 || $item->sales2 == 0 || $item->modal2 == 0)
+                                                    @if ($item->sales2 == 0)
                                                         <td class='border border-5'>0</td>
                                                     @else
                                                         @php
                                                             $yoy2 =
-                                                                (floatval($item->sales2) /
-                                                                    floatval($item->sales2 - $item->modal2) -
+                                                                (floatval($item->sales2 - $item->modal2) /
+                                                                    floatval($item->sales1 - $item->modal) -
                                                                     1) *
                                                                 100;
                                                         @endphp

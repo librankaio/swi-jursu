@@ -23,7 +23,7 @@ class SalesCompareController extends Controller
             // $results = DB::select(DB::raw("SELECT code_mlokasi, day, tdate, CASH, [DEBIT BCA] as DEBIT_BCA, [CREDIT NON BCA] as CC_NON_BCA, [DEBIT NON BCA] as DEBIT_NON_BCA , [m-Banking] as mbanking, [CREDIT BCA] as CC_BCA, QRIS FROM vrdailypayrcv WHERE tdate BETWEEN '$datefrForm' AND '$datetoForm' AND code_mlokasi = '$request->lokasi'"));
             $results = DB::select(DB::raw("EXEC rptsalescompareputlet '$datefrForm', '$datetoForm', '$datefrFormcpr', '$datetoFormcpr'"));
 
-            // dd(($datefrFormcpr));
+            // dd(($results));
             return view('reports.salescompare',[
                 'results' => $results,
             ]);
