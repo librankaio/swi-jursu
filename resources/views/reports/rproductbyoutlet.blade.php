@@ -102,27 +102,27 @@
                                                     <td class='border border-5'>{{ $item->name }}</td>
                                                     <td class='border border-5'>{{ $item->code_muom }}</td>
                                                     <td class='border border-5'>{{ $item->name_mgrp }}</td>
-                                                    <td class='border border-5'>{{ number_format($item->UTM, 2, '.', ',') }}
+                                                    <td class='border border-5'>{{ number_format($item->UTM, 0, '.', ',') }}
                                                     </td>
-                                                    <td class='border border-5'>{{ number_format($item->HDH, 2, '.', ',') }}
+                                                    <td class='border border-5'>{{ number_format($item->HDH, 0, '.', ',') }}
                                                     </td>
-                                                    <td class='border border-5'>{{ number_format($item->KDY, 2, '.', ',') }}
+                                                    <td class='border border-5'>{{ number_format($item->KDY, 0, '.', ',') }}
                                                     </td>
-                                                    <td class='border border-5'>{{ number_format($item->CLD, 2, '.', ',') }}
+                                                    <td class='border border-5'>{{ number_format($item->CLD, 0, '.', ',') }}
                                                     </td>
-                                                    <td class='border border-5'>{{ number_format($item->KLD, 2, '.', ',') }}
+                                                    <td class='border border-5'>{{ number_format($item->KLD, 0, '.', ',') }}
                                                     </td>
-                                                    <td class='border border-5'>{{ number_format($item->JHR, 2, '.', ',') }}
+                                                    <td class='border border-5'>{{ number_format($item->JHR, 0, '.', ',') }}
                                                     </td>
-                                                    <td class='border border-5'>{{ number_format($item->SDG, 2, '.', ',') }}
+                                                    <td class='border border-5'>{{ number_format($item->SDG, 0, '.', ',') }}
                                                     </td>
-                                                    <td class='border border-5'>{{ number_format($item->MCG, 2, '.', ',') }}
+                                                    <td class='border border-5'>{{ number_format($item->MCG, 0, '.', ',') }}
                                                     </td>
-                                                    <td class='border border-5'>{{ number_format($item->SMB, 2, '.', ',') }}
+                                                    <td class='border border-5'>{{ number_format($item->SMB, 0, '.', ',') }}
                                                     </td>
-                                                    <td class='border border-5'>{{ number_format($item->CMP, 2, '.', ',') }}
+                                                    <td class='border border-5'>{{ number_format($item->CMP, 0, '.', ',') }}
                                                     </td>
-                                                    <td class='border border-5'>{{ number_format($item->MCE, 2, '.', ',') }}
+                                                    <td class='border border-5'>{{ number_format($item->MCE, 0, '.', ',') }}
                                                     </td>
                                                 </tr>
                                             @endforeach
