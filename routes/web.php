@@ -13,6 +13,7 @@ use App\Http\Controllers\RsalesTransactionController;
 use App\Http\Controllers\SalesCompareController;
 use App\Http\Controllers\SjReturController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\TransaksiV2Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,9 +35,13 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
     
+    Route::get('/packlistv2', [TransaksiV2Controller::class, 'index'])->name('packlistv2');
+    Route::get('/packlistv2/update', [TransaksiV2Controller::class, 'update'])->name('packlistv2update');
+
     Route::get('/packlist', [TransaksiController::class, 'index'])->name('packlist');
     Route::get('/packlist/update', [TransaksiController::class, 'update'])->name('packlistupdate');
     Route::post('/getnosj', [TransaksiController::class, 'getNoSj'])->name('getnosj');
+    Route::post('/getdetailsj', [TransaksiV2Controller::class, 'getDetailSj'])->name('getdetailsj');
     Route::post('/getitem', [TransaksiController::class, 'getItem'])->name('getitem');
     Route::post('/getcodeitem', [TransaksiController::class, 'getCodeItem'])->name('getcodeitem');
 

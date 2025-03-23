@@ -54,3 +54,16 @@ function thousands_separators(num) {
     num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return num_parts.join(".");
 }
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    let day = date.getDate();
+    let month = date.getMonth() + 1; // Months are zero-indexed
+    let year = date.getFullYear();
+
+    // Add leading zero to day and month if needed
+    day = day < 10 ? '0' + day : day;
+    month = month < 10 ? '0' + month : month;
+
+    return day + '-' + month + '-' + year;
+}

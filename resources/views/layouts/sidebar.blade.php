@@ -7,11 +7,17 @@
             <li><a class="nav-link" href="{{ route('produk') }}">Plroduk</a></li>  
             <li><a class="nav-link" href="{{ route('penjualan') }}">Penjualan</a></li>  
         </ul> --}}
-        @if (session('username') == 'admin')
+        @if (session('username') == 'admin' || session('username') == 'swifect')
     <li><a class="nav-link" href="{{ route('packlist') }}"><i class="fas fa-cubes"></i> <span>Packing List</span></a></li>
+    @if (session('username') == 'swifect')
+        <li><a class="nav-link" href="{{ route('packlistv2') }}"><i class="fas fa-cubes"></i> <span>Packing List
+                    V2</span></a>
+    @endif
+    </li>
     <li><a class="nav-link" href="{{ route('rdailypaymentrcv') }}"><i class="fas fa-cubes"></i> <span>Daily Payment
                 Received</span></a></li>
-    <li><a class="nav-link" href="{{ route('rpaymentrcvgroup') }}"><i class="fas fa-cubes"></i> <span>Payment Received By
+    <li><a class="nav-link" href="{{ route('rpaymentrcvgroup') }}"><i class="fas fa-cubes"></i> <span>Payment Received
+                By
                 Group</span></a></li>
     <li><a class="nav-link" href="{{ route('rsalessummary') }}"><i class="fas fa-cubes"></i> <span>Sales
                 Summary</span></a></li>
